@@ -1,115 +1,6 @@
-
-<style>
-
-:root {
-  --primary-color: #0077cc;
-  --primary-light-color: #005599;
-  --secondary-color: #00adcc;
-
-  --heading-color: #111;
-  --paragraph-color: #333;
-}
-
-h1, h2, h3, strong {
-  color: var(--heading-color);
-}
-
-body {
-  color: var(--paragraph-color);
-}
-
-.title {
-  text-align: center;
-}
-
-.summary {
-  text-indent: 2rem;
-  /* margin-left: 250px; */
-  margin-right: 500px;
-}
-
-ul {
-  list-style: none;
-}
-
-li {
-  margin-bottom: 20px;
-}
-
-.wrap {
-  margin-left: auto;
-  margin-right: auto;
-  width: 800px;
-}
-
-
-/* Project Items Display */
-ul.projects {
-  /* Project Item */
-  li {
-    display: flex;
-    flex-flow: column;
-
-    /* Make tags look like rounded "bubbles" */
-    ul.tags {
-      order: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      list-style: none;
-      padding: 0;
-      margin-left: 20px;
-      margin-bottom: 4px;
-
-      li {
-        display: inline-block;
-        margin-top: 4px;
-        margin-bottom: 0;
-        background: var(--secondary-color);
-        color: white;
-        padding: 5px 8px;
-        border-radius: 20px;
-        font-size: 12px;
-      }
-    }
-
-    /* Link/ header description */
-    a.subject {
-      order: 0;
-      font-weight: bold;
-      font-size: 18px;
-      color: var(--primary-color);
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-        color: var(--primary-light-color);
-      }
-    }
-
-    /* Natural paragraph-style description */
-    p.description {
-      order: 2;
-      display: block;
-      font-size: 16px;
-      text-indent: 2rem;
-      color: #333;
-      margin-top: 4px;
-
-      a {
-        color: var(--primary-color);
-        text-decoration: none;
-
-        &:hover {
-          color: var(--primary-light-color);
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
-</style>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
 <div class="wrap">
@@ -118,12 +9,12 @@ ul.projects {
 <section class="intro">
   <canvas id="helixCanvas"></canvas>
   <p class="summary">
-    Originally to help me keep track of fun things I've been working on, this page will soon serve as something of a portfolio if I find to do the styling for it.
+    Originally created for referencing purposes to help me find the latest examples of my work in a given technology, I've been working on re-purposing this page to serve as something of a portfolio.
   </p>
 </section>
 
 
-<h2>Latest Project per Technology</h2>
+<h2>Latest Technology</h2>
 <ul class="projects">
   <li>
     <ul class="tags">
@@ -143,7 +34,7 @@ ul.projects {
 </ul>
 
   <li>
-    <strong>Rails 2025, Ruby Gems, GenAI: </strong>
+    <strong>Rails 2025, Ruby Gems, Automation + GenAI: </strong>
     <a href="#apps/j____">In a closed source</a>
     my latest Rails work should be refrenced where I use lots of great features in Rails (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) as well as some interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
   </li>
@@ -204,3 +95,5 @@ ul.projects {
 
 </div>
 </body>
+
+<script type="text/javascript" src="helix.js"></script>
