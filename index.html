@@ -1,5 +1,33 @@
 
 <style>
+
+:root {
+  --primary-color: #0077cc;
+  --primary-light-color: #005599;
+  --secondary-color: #00adcc;
+
+  --heading-color: #111;
+  --paragraph-color: #333;
+}
+
+h1, h2, h3, strong {
+  color: var(--heading-color);
+}
+
+body {
+  color: var(--paragraph-color);
+}
+
+.title {
+  text-align: center;
+}
+
+.summary {
+  text-indent: 2rem;
+  /* margin-left: 250px; */
+  margin-right: 500px;
+}
+
 ul {
   list-style: none;
 }
@@ -13,43 +41,158 @@ li {
   margin-right: auto;
   width: 800px;
 }
+
+
+/* Project Items Display */
+ul.projects {
+  /* Project Item */
+  li {
+    display: flex;
+    flex-flow: column;
+
+    /* Make tags look like rounded "bubbles" */
+    ul.tags {
+      order: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin-left: 20px;
+      margin-bottom: 4px;
+
+      li {
+        display: inline-block;
+        margin-top: 4px;
+        margin-bottom: 0;
+        background: var(--secondary-color);
+        color: white;
+        padding: 5px 8px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+    }
+
+    /* Link/ header description */
+    a.subject {
+      order: 0;
+      font-weight: bold;
+      font-size: 18px;
+      color: var(--primary-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        color: var(--primary-light-color);
+      }
+    }
+
+    /* Natural paragraph-style description */
+    p.description {
+      order: 2;
+      display: block;
+      font-size: 16px;
+      text-indent: 2rem;
+      color: #333;
+      margin-top: 4px;
+
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--primary-light-color);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
 </style>
 
 <body>
 <div class="wrap">
 
+<h1 class="title">TheNotary's Portfolio</h1>
+<section class="intro">
+  <canvas id="helixCanvas"></canvas>
+  <p class="summary">
+    Originally to help me keep track of fun things I've been working on, this page will soon serve as something of a portfolio if I find to do the styling for it.
+  </p>
+</section>
 
-<h1>TheNotary</h1>
-<div>
-Originally to help me keep track of fun things I've been working on, this page now serves as something of a portfolio.  
-</div>
 
-<h4>Best Software Works</h4>
-<ul>
-  <li> Driver: <a href="https://github.com/TheNotary/keyboard_driver_sk80">A Keyboard Driver</a> for the lights on my keyboard along with an accompanying <a href="https://gist.github.com/TheNotary/ce7844f9333bca7fafcc7409ca6d657b">article</a> documenting the reverse engineering techniques I used throughout the process</li>
-  <li> Gadget: An up-coming (?) kickstarter project composed of a react/ capacitor-based frontend for web/mobile interactions, two python services, and an ARM Cortex-A based embedded device running those two services on linux.  This project is currently closed source while I source financing for the marketing aspects of the campaign.</li>
-  <li> Game: <a href="https://github.com/TriNetCo/pax-imperia-clone">Pax Imperia </a> A collaborative effort where myself and three collegues set out to re-create Pax Imperia in web technologies.  We used Javascript, Go, and a tiny bit of React to build the multiplayer experience.</li>
-  <li> Game: <a href="https://github.com/TheNotary/initial_fantasy">Initial Fantasy</a></li>
-  <li> Game: <a href="https://thenotary.github.io/fish_poop/keyboard_memory/index.html">Mario Teaches Typing</a></li>
+<h2>Latest Project per Technology</h2>
+<ul class="projects">
+  <li>
+    <ul class="tags">
+      <li>C++</li>
+      <li>x86 Reverse Engineering</li>
+      <li>Windows Userspace Driver</li>
+    </ul>
+    <a class="subject" href="https://github.com/TheNotary/keyboard_driver_sk80">
+      A C++ Keyboard Driver
+    </a>
+    <p class="description">
+      This project controls the lights on my keyboard and helped me refresh my x86 reverse engineering skills. This project includes an accompanying
+      <a href="https://gist.github.com/TheNotary/ce7844f9333bca7fafcc7409ca6d657b">article</a>
+      documenting the reverse engineering techniques I used throughout the process.  As a fun bonus, this article was commented on and republished in <a href="https://hackaday.com/">hackaday's</a> blog.
+    </p>
+  </li>
 </ul>
 
-<h4>Less interesting Software I've Built</h4>
-<ul>
-  <li> Networking: <a href="https://github.com/TheNotary/cshrp_websocket_edu">C# Websocket Implementation</a></li>
-  <li> Interesting Frontend: <a href="  https://github.com/TheNotary/edu-offline-webapp-demo">A Frameworkless, Offline, DB Syncronizing Web App</a></li>
+  <li>
+    <strong>Rails 2025, Ruby Gems, GenAI: </strong>
+    <a href="#apps/j____">In a closed source</a>
+    my latest Rails work should be refrenced where I use lots of great features in Rails (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) as well as some interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
+  </li>
+
+  <li>
+    <strong>React + Capacitor + Python + ARM Embedded Gadget: </strong>
+    Source is closed atm, see /maker_and_hardware/rpi/hardware-r...
+    An up-coming (?) kickstarter project composed of a react/ capacitor-based frontend for web/mobile interactions, two python services, and an ARM Cortex-A based embedded device running those two services on linux.  This project is currently closed source while I source financing for the marketing aspects of the campaign.
+  </li>
+
+  <li>
+    <strong>React, VanillaJS, ThreeJS, Golang, Websockets, Networking, GCP game: </strong>
+    <a href="https://github.com/TriNetCo/pax-imperia-clone">Pax Imperia </a>
+    Closed source continuation lives on gitlab now at /games/pax-imperia-clone.
+    A collaborative effort where myself and three collegues set out to re-create Pax Imperia in web technologies.  We used Javascript, Go, and a tiny bit of React to build the multiplayer experience.
+  </li>
+  <li>
+    <strong>C#, Networking, Websockets, Library Development: </strong>
+    <a href="https://github.com/TheNotary/cshrp_websocket_edu">C# Websocket Implementation </a> based on <a href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a>
+  </li>
+  <li>
+    <strong>WebAPIs, VanillaJS, Offline WebApp: </strong>
+    <a href="  https://github.com/TheNotary/edu-offline-webapp-demo">A Frameworkless, Offline, DB Syncronizing Web App</a>
+  </li>
+  <li>
+    <strong>Oldschool prototypical VanillaJS, HTML Canvas: </strong>
+    <a href="https://github.com/TheNotary/initial_fantasy">Initial Fantasy</a> is a clone I started of an old game from 1991.  I was inspired to do this shortly after the HTML Canvas API began to see browser adoption.
+  </li>
+  <li>
+    <strong>VanillaJS, Jasmine Integration Testing, Educational Game Dev: </strong>
+    <a href="https://thenotary.github.io/fish_poop/keyboard_memory/index.html">Mario Teaches Typing</a>
+  </li>
+  <li>
+    <strong>Rails FOSS: </strong>
+    <a href="https://github.com/thenotary/eff_fab">EFF Fab</a> is my best Open-source work showcasing rails.
+  </li>
 </ul>
 
-<h4>Cool Things I Started that I Need to Find Time to Finish</h4>
+<h2>Cool Things I Started that I Need to Find Time to Finish and I'm Certainly Not Showing Off</h2>
 <ul>
-  <li> Device: <a href="https://github.com/TheNotary/arduino-linux_server_status_display/tree/master">An Amtel-based network-attached LCD Screen</a>.  I apparently lost the source for this but here's an edu depo I did which used all the components.  TODO: Recreate the original Network Attached LCD source code, I've checked everywhere.</li>
+  <li> Device: <a href="https://github.com/TheNotary/arduino-linux_server_status_display/tree/master">An Amtel-based network-attached LCD Screen</a>.  I apparently lost the source for this but here's an edu demo I did which used all the components.  TODO: Recreate the original Network Attached LCD source code, I've checked everywhere.</li>
   <li> Text Game: <a href="https://github.com/TheNotary/adventure_channel">Adventure Channel</a></li>
 </ul>
 
 <h4>Development Notes</h4>
 <ul>
   <li><a href="https://github.com/TheNotary/notes">Notes</a></li>
-  <li><a href="https://github.com/TheNotary/mac_windows_linux_loadouts">mac_windows_linux_loadouts</a></li>  
-  <li><a href="https://github.com/TheNotary/sensor_array">Sensor Array</a>A rails app that is nothing but my notes on working with electronics</li>  
+  <li><a href="https://github.com/TheNotary/mac_windows_linux_loadouts">mac_windows_linux_loadouts</a></li>
+  <li><a href="https://github.com/TheNotary/sensor_array">Sensor Array</a>A rails app that is nothing but my notes on working with electronics</li>
 </ul>
 
 <h4>Hidden Repos on my Private GitLab Instance</h4>
