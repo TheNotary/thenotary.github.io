@@ -15,14 +15,32 @@ body {
   color: var(--paragraph-color);
 }
 
-.title {
+canvas {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  /* border: 1px solid #ccc; */
+  /* background-color: #1a1a2e; */
+  border-radius: 40px;
+}
+
+h1.title {
   text-align: center;
 }
 
-.summary {
-  text-indent: 2rem;
-  /* margin-left: 250px; */
-  margin-right: 500px;
+section.intro {
+  display: flex;
+  justify-content: space-between;
+
+
+  .summary {
+    /* flex-grow: 1; */
+    text-indent: 2rem;
+    width: 300px;
+    /* margin-left: 250px; */
+    /* margin-right: 500px; */
+  }
+
 }
 
 ul {
