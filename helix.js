@@ -93,9 +93,9 @@ function drawHelix(ctx, config) {
         ctx.beginPath();
         ctx.arc(rStrandX, y, config.strands.right.radius * scaleRightStrand, 0, Math.PI * 2);
         ctx.strokeStyle = config.strands.right.stroke_color;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 4;
         ctx.fillStyle = config.strands.right.fill_color;
-        ctx.fill();
+        // ctx.fill();
         ctx.stroke();
     }
 
@@ -132,13 +132,26 @@ function hexToRgb(hex) {
 
 // On load...
 const canvas = document.getElementById('helixCanvas');
+const helixContainer = canvas.parentElement;
 canvas.width = 180;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
 
-canvas.onclick = () => {
-    enabled = !enabled
+// Allow user to disable and hide helix
+helixContainer.onclick = () => {
+    // enabled = !enabled
     if (enabled) {
+        // Disable
+        canvas.classList.add('hidden');
+        canvas.classList.remove('hideable');
+        setTimeout(() => {
+            enabled = !enabled;
+        }, 2000);
+    } else {
+        // Enable
+        canvas.classList.add('hideable');
+        canvas.classList.remove('hidden');
+        enabled = !enabled;
         drawHelix(ctx, config, 9);
     }
 }

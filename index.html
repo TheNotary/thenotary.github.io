@@ -3,13 +3,17 @@
 <head>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<canvas id="helixCanvas"></canvas>
+
+<div class="helix-container">
+  <canvas id="helixCanvas" class="hideable"></canvas>
+</div>
 
 <div class="wrap">
 
-  <h1 class="title"><span id="real_name">TheNotary</span>'s Portfolio</h1>
+  <h1 class="title">
+    <span id="real_name">TheNotary</span>'s Portfolio
+  </h1>
   <!-- <h3 class="title">Finally!</h3> -->
 
 <section class="intro">
@@ -59,13 +63,13 @@
   </li>
 
   <li>
-    <a class="subject" href="#gitlab/apps/j____.git">
-      Rails 8.0, Ruby Gems, GenAI Automation Project
-    </a>
 
-    <div class="tail">
+      <a class="subject" href="#gitlab/apps/j____.git">
+        Rails 8.0, Ruby Gems, GenAI Automation Project
+      </a>
+
       <div class="image-container">
-        <div class="image"></div>
+        <image class="image" src="images/boat-blueprint.jpg" ></image>
       </div>
 
       <ul class="tags">
@@ -83,11 +87,11 @@
         <li>pgvector</li>
         <li>llama-cpp-python</li>
       </ul>
+
       <p class="description">
         This is my latest and possibly most involved Rails app I've ever worked on and should absolutely be referenced in future projects where I might use technologies from the Rails ecosystem (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) or any interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
       </p>
 
-    </div>
   </li>
 
   <li>

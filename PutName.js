@@ -14,7 +14,7 @@ function putName(fullName) {
 }
 
 function putMsg() {
-    const msg = "Thanks for stopping by my portfolio.  I hope you find everything well."
+    const msg = "I see that you came here via my referal link.  Thanks for stopping by to examine my work, I genuinely appreciate your taking the time.  I hope you enjoy your peruse andn everything finds you well."
     document.getElementById('msg').textContent = msg;
 }
 

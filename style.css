@@ -23,16 +23,33 @@ body {
   font-family: Arial, sans-serif;
 }
 
-canvas {
+.helix-container {
   position: fixed;
   top: 0px;
   right: 0px;
 }
 
-@media (max-width: 1100px) {
-  canvas {
-    display: none;
+@media (max-width: 1000px) {
+  /* Visible now means hidden in this context... */
+  .hideable {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
   }
+}
+
+@media (min-width: 1000px) {
+  .hideable {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
 }
 
 .title {
@@ -68,28 +85,31 @@ li {
 
 /* Project Items Display */
 ul.projects {
+  padding-left: 40px;
+  padding-right: 40px;
+
   /* Project Item */
   li {
-    display: flex;
-    flex-flow: column;
 
     /* Make tags look like rounded "bubbles" */
     ul.tags {
       order: 1;
-      display: flex;
-      flex-wrap: wrap;
-      column-gap: 8px;
-      row-gap: 4px;
+
+      margin-top: 3px;
+      margin-bottom: 8px;
+
       list-style: none;
-      padding: 0;
-      margin-left: 20px;
-      margin-bottom: 4px;
+      padding-left: 0px;
+      margin-left: 0px;
 
       li {
         display: inline-block;
         cursor: default;
-        margin-top: 4px;
-        margin-bottom: 0;
+
+        margin-top: 6px;
+        margin-bottom: 2px;
+        margin-right: 8px;
+
         background: var(--secondary-color);
         color: #eee;
         padding: 5px 8px;
@@ -105,17 +125,17 @@ ul.projects {
 
     div.image-container {
       float: right;
-      margin-top: -20px;
-      width: 150px;
-      height: 130px;
-      padding-left: 80px;
-      padding-right: 40px;
+      width: 200px;
+      margin-left: 20px;
+      margin-right: 20px;
+      /* border: 1px solid #ddd; */
     }
 
-    div.image {
+    .image {
       background-color: var(--secondary-light-color);
       width: 100%;
-      height: 100%;
+      border-radius: 40px;
+      opacity: 80%;
     }
 
     /* Link/ header description */
@@ -132,16 +152,13 @@ ul.projects {
       }
     }
 
-
-
     /* Natural paragraph-style description */
     p.description {
       order: 2;
       display: block;
       font-size: 16px;
-      text-indent: 2rem;
+      /* text-indent: 2rem; */
       /* padding-left: 2rem; */
-      /* padding-right: 0rem; */
 
       color: #333;
       margin-top: 4px;
