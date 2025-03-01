@@ -1,42 +1,56 @@
 :root {
+  --background-color: #eee;
+
   --primary-color: #0077cc;
-  --primary-light-color: #005599;
+  --primary-light-color: #005599;   /* delta: 0x00, 0x22, 0x33 */
   --secondary-color: #00adcc;
+  --secondary-light-color: #008b99;
 
   --heading-color: #111;
   --paragraph-color: #333;
+
+  --mystery-color: #00111a;
 }
 
 h1, h2, h3, strong {
-  color: var(--heading-color);
+  /* color: var(--heading-color); */
+  color: var(--mystery-color);
 }
 
 body {
   color: var(--paragraph-color);
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
 }
 
 canvas {
   position: fixed;
-  right: 0px;
   top: 0px;
-  /* border: 1px solid #ccc; */
-  /* background-color: #1a1a2e; */
-  border-radius: 40px;
+  right: 0px;
 }
 
-h1.title {
+@media (max-width: 1100px) {
+  canvas {
+    display: none;
+  }
+}
+
+.title {
   text-align: center;
+}
+
+h3.title {
+  margin-top: -20px;
 }
 
 section.intro {
   display: flex;
   justify-content: space-between;
 
-
   .summary {
     /* flex-grow: 1; */
-    text-indent: 2rem;
-    width: 300px;
+    /* text-indent: 2rem; */
+    /* width: 300px; */
     /* margin-left: 250px; */
     /* margin-right: 500px; */
   }
@@ -70,7 +84,9 @@ ul.projects {
       order: 1;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      /* justify-content: space-evenly; */
+      column-gap: 8px;
+      row-gap: 4px;
       list-style: none;
       padding: 0;
       margin-left: 20px;
@@ -78,14 +94,34 @@ ul.projects {
 
       li {
         display: inline-block;
+        cursor: default;
         margin-top: 4px;
         margin-bottom: 0;
         background: var(--secondary-color);
-        color: white;
+        color: #eee;
         padding: 5px 8px;
         border-radius: 20px;
         font-size: 12px;
+
+        &:hover {
+          background-color: var(--secondary-light-color);
+          color: white;
+        }
       }
+    }
+
+    div.tail {
+      display: flex;
+    }
+
+    div.text-wrapper {
+      display: flex;
+    }
+
+    div.image {
+      background-color: red;
+      width: 100px;
+      height: 100px;
     }
 
     /* Link/ header description */
@@ -102,12 +138,17 @@ ul.projects {
       }
     }
 
+
+
     /* Natural paragraph-style description */
     p.description {
       order: 2;
       display: block;
       font-size: 16px;
       text-indent: 2rem;
+      /* padding-left: 2rem; */
+      /* padding-right: 0rem; */
+
       color: #333;
       margin-top: 4px;
 

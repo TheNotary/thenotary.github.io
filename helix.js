@@ -131,7 +131,7 @@ function hexToRgb(hex) {
 
 // On load...
 const canvas = document.getElementById('helixCanvas');
-canvas.width = 200;
+canvas.width = 180;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
 

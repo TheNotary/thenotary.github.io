@@ -9,77 +9,196 @@
 
 <div class="wrap">
 
-  <h1 class="title">TheNotary's Portfolio</h1>
+  <h1 class="title"><span id="real_name">TheNotary</span>'s Portfolio</h1>
+  <!-- <h3 class="title">Finally!</h3> -->
 
 <section class="intro">
-
   <div>
-    <p class="summary">
-      Originally created for referencing purposes to help me find the latest examples of my work in a given technology, I've been working on re-purposing this page to serve as something of a portfolio.
+    <p id="msg" class="summary">
+      <!-- You're reading my professional portfolio.  Thanks! -->
     </p>
   </div>
-
 </section>
 
 
-<h2>Latest Technology</h2>
+<h2>Technology Projects</h2>
 <ul class="projects">
   <li>
+    <a class="subject" href="https://github.com/TheNotary/keyboard_driver_sk80">
+      A C++ Keyboard Driver
+    </a>
     <ul class="tags">
       <li>C++</li>
       <li>x86 Reverse Engineering</li>
       <li>Windows Userspace Driver</li>
     </ul>
-    <a class="subject" href="https://github.com/TheNotary/keyboard_driver_sk80">
-      A C++ Keyboard Driver
-    </a>
     <p class="description">
       This project controls the lights on my keyboard and helped me refresh my x86 reverse engineering skills. This project includes an accompanying
       <a href="https://gist.github.com/TheNotary/ce7844f9333bca7fafcc7409ca6d657b">article</a>
       documenting the reverse engineering techniques I used throughout the process.  As a fun bonus, this article was commented on and republished in <a href="https://hackaday.com/">hackaday's</a> blog.
     </p>
   </li>
+
+  <li>
+    <a class="subject" href="#closed_source">
+      Gilligan: an Infrastructure Automation Drone Plugin
+    </a>
+    <ul class="tags">
+      <li>CI/ CD Plugin</li>
+      <li>Drone/ Vela</li>
+      <li>Deployments-as-Code</li>
+      <li>Containerization</li>
+      <li>Ruby</li>
+      <li>Work</li>
+    </ul>
+    <p class="description">
+      This project, while closed source, was by-and-large the highlight of my time consulting for Cargill.  They were on their journey towards public-cloud adoption and were making great strides.  An infrastructure team had been spun up to build <strong>Captain</strong> Cargill's development teams to define all of their deployments to AWS as code using a syntax fairly similar to Kubernetes manifest files.  But there was one problem; due to networking constraints, not all workloads could go to AWS.  For on-prem workloads, there was no deployment-as-code solution requiring engineers to learn a nuanced web interface for configuring VMs, and then navigate it everytime a new workload was needed.  In a few weeks, with some of the amazing engineers at Cargill, I released <strong>Gilligan</strong>, a ruby-based CI/ CD plugin that served as a counterpart to the existing Captain solution.
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="#gitlab/apps/j____.git">
+      Rails 8.0, Ruby Gems, GenAI Automation Project
+    </a>
+    <div class="tail">
+      <div class="text-wrapper">
+        <ul class="tags">
+          <li>Rails</li>
+          <li>Ruby Gems</li>
+          <li>Stimulus</li>
+          <li>Turbo</li>
+          <li>AcviteJob</li>
+          <li>Action Cable</li>
+          <li>Postgres</li>
+          <li>MiniTest</li>
+          <li>RSpec</li>
+          <li>GenAI</li>
+          <li>SpaCy</li>
+          <li>pgvector</li>
+          <li>llama-cpp-python</li>
+        </ul>
+        <p class="description">
+          This is my latest and possibly most involved Rails app I've ever worked on and should absolutely be referenced in future projects where I might use technologies from the Rails ecosystem (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) or any interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
+        </p>
+      </div>
+      <div class="image"></div>
+    </div>
+  </li>
+
+
+
+  <li>
+    <a class="subject" href="#gitlab/maker_and_hardware/rpi/hardware-ras_____.git">
+      A React, Capacitor, Python, Embedded ARM, Mobile Gadget
+    </a>
+    <ul class="tags">
+      <li>React</li>
+      <li>Capacitor</li>
+      <li>Python</li>
+      <li>Embedded</li>
+      <li>ARM</li>
+      <li>iOS</li>
+      <li>Android</li>
+    </ul>
+    <p class="description">
+      An up-coming kickstarter project for a device with a react/ capacitor-based frontend for web/ mobile interactions, two embedded python services, and an ARM Cortex-A based device running those two services on linux.  I really enjoyed building out the infrastructure related to this project.  I learned a lot about AWS and their IPV6 support that can allow for some very economical networking solutions.  This project is currently closed source while I source financing for the marketing aspects of the campaign, but I'm hopeful it makes traction and forms a strong community in the automation space.
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="https://github.com/TriNetCo/pax-imperia-clone">
+      Pax Imperia Clone
+    </a>
+    <ul class="tags">
+      <li>React</li>
+      <li>NPM Library Packaging</li>
+      <li>ThreeJS</li>
+      <li>Golang</li>
+      <li>Websockets</li>
+      <li>Networking</li>
+      <li>GCP</li>
+    </ul>
+    <p class="description">
+      A collaborative effort where myself and three collegues set out to re-create Pax Imperia in web technologies.  We used Javascript, Go, and a tiny bit of React to build out the multiplayer experience.
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="https://github.com/TheNotary/cshrp_websocket_edu">
+      C# Websocket Implementation
+    </a>
+    <ul class="tags">
+      <li>C#</li>
+      <li>Library Packaging</li>
+      <li>Staticly Typed Testing Patterns</li>
+      <li>Streams</li>
+    </ul>
+    <p class="description">
+      I decided to study websockets and wrote a C# library based on <a href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a> that uses nothing but TCP sockets as a basis.
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="https://github.com/TheNotary/edu-offline-webapp-demo">
+      A Frameworkless, Offline, DB Syncronizing Web App
+    </a>
+    <ul class="tags">
+      <li>WebAPIs</li>
+      <li>VanillaJS</li>
+      <li>Offline WebApp</li>
+    </ul>
+    <p class="description">
+      A Frameworkless, Offline, DB Syncronizing Web App
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="https://github.com/TheNotary/initial_fantasy">
+      Initial Fantasy a browser game
+    </a>
+    <ul class="tags">
+      <li>Oldschool prototypical VanillaJS</li>
+      <li>Canvas API</li>
+    </ul>
+    <p class="description">
+      Initial Fantasy is a clone I started of an old game from 1991.  I was inspired to do this shortly after the HTML Canvas API began to see browser adoption.
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="https://thenotary.github.io/fish_poop/keyboard_memory/index.html">
+      Mario Teaches Typing an educational browser game
+    </a>
+    <ul class="tags">
+      <li>VanillaJS</li>
+      <li>Educational Game Dev</li>
+      <li>Jasmine Integration Testing</li>
+      <li>Web Audio API</li>
+    </ul>
+    <p class="description">
+      I wrote this to help my nephew remeber where the keys are on the keyboard without looking.
+    </p>
+  </li>
+
+  <li>
+    <a class="subject" href="https://github.com/thenotary/eff_fab">
+      EFF Fab
+    </a>
+    <ul class="tags">
+      <li>Rails</li>
+      <li>FOSS</li>
+      <li>Work</li>
+    </ul>
+    <p class="description">
+      EFF Fab is something I did for my company and they let it be open source! It showcases professional use of rails, caching, and SQL optimations and has a dandy frontend that I didn't design myself but really admire.  I was sure to do everything possible to ensure the app was performant and able to out-deliver competing frameworks sometimes presumed to be faster.
+    </p>
+
+  </li>
+
 </ul>
 
-  <li>
-    <strong>Rails 2025, Ruby Gems, Automation + GenAI: </strong>
-    <a href="#apps/j____">In a closed source</a>
-    my latest Rails work should be refrenced where I use lots of great features in Rails (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) as well as some interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
-  </li>
-
-  <li>
-    <strong>React + Capacitor + Python + ARM Embedded Gadget: </strong>
-    Source is closed atm, see /maker_and_hardware/rpi/hardware-r...
-    An up-coming (?) kickstarter project composed of a react/ capacitor-based frontend for web/mobile interactions, two python services, and an ARM Cortex-A based embedded device running those two services on linux.  This project is currently closed source while I source financing for the marketing aspects of the campaign.
-  </li>
-
-  <li>
-    <strong>React, VanillaJS, ThreeJS, Golang, Websockets, Networking, GCP game: </strong>
-    <a href="https://github.com/TriNetCo/pax-imperia-clone">Pax Imperia </a>
-    Closed source continuation lives on gitlab now at /games/pax-imperia-clone.
-    A collaborative effort where myself and three collegues set out to re-create Pax Imperia in web technologies.  We used Javascript, Go, and a tiny bit of React to build the multiplayer experience.
-  </li>
-  <li>
-    <strong>C#, Networking, Websockets, Library Development: </strong>
-    <a href="https://github.com/TheNotary/cshrp_websocket_edu">C# Websocket Implementation </a> based on <a href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a>
-  </li>
-  <li>
-    <strong>WebAPIs, VanillaJS, Offline WebApp: </strong>
-    <a href="  https://github.com/TheNotary/edu-offline-webapp-demo">A Frameworkless, Offline, DB Syncronizing Web App</a>
-  </li>
-  <li>
-    <strong>Oldschool prototypical VanillaJS, HTML Canvas: </strong>
-    <a href="https://github.com/TheNotary/initial_fantasy">Initial Fantasy</a> is a clone I started of an old game from 1991.  I was inspired to do this shortly after the HTML Canvas API began to see browser adoption.
-  </li>
-  <li>
-    <strong>VanillaJS, Jasmine Integration Testing, Educational Game Dev: </strong>
-    <a href="https://thenotary.github.io/fish_poop/keyboard_memory/index.html">Mario Teaches Typing</a>
-  </li>
-  <li>
-    <strong>Rails FOSS: </strong>
-    <a href="https://github.com/thenotary/eff_fab">EFF Fab</a> is my best Open-source work showcasing rails.
-  </li>
-</ul>
+<!--
+These notes are just for me.  Probably I'll forget about them.
 
 <h2>Cool Things I Started that I Need to Find Time to Finish and I'm Certainly Not Showing Off</h2>
 <ul>
@@ -87,21 +206,23 @@
   <li> Text Game: <a href="https://github.com/TheNotary/adventure_channel">Adventure Channel</a></li>
 </ul>
 
-<h4>Development Notes</h4>
+<h2>Development Notes</h2>
 <ul>
   <li><a href="https://github.com/TheNotary/notes">Notes</a></li>
   <li><a href="https://github.com/TheNotary/mac_windows_linux_loadouts">mac_windows_linux_loadouts</a></li>
   <li><a href="https://github.com/TheNotary/sensor_array">Sensor Array</a>A rails app that is nothing but my notes on working with electronics</li>
 </ul>
 
-<h4>Hidden Repos on my Private GitLab Instance</h4>
+<h4>Private GitLab Stuff</h4>
 <ul>
   <li><a href="#">edu/myblog</a></li>
-  <li><a href="#">destructocats/my_tech_blog</a></li>
+  <li><a href="#">destructochaps/my_tech_blog</a></li>
 </ul>
 
+ -->
 
 </div>
 </body>
 
 <script type="text/javascript" src="helix.js"></script>
+<script type="text/javascript" src="PutName.js"></script>
