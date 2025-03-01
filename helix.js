@@ -1,11 +1,36 @@
+// Helix State
 let enabled = true;
 let offset = 0;
+let slowAt = 13;
+
+// Draw Word State
+const words = [ "Ruby", "Py", "Go", "JS", "Rails", "CI", "k8s", "C++", "TS", "Java", "C#" ];
+let textEdge = true;
+let wordIndex = 0;
+
+let overlappers = [];
 
 function drawHelix(ctx, config) {
+    // Decelerate when we hit the break point
+    if (offset > slowAt) {
+        config.speed -= 0.0001;
+    }
+
+    // stop when we're going reverse long enough to feel cool :)
+    if (offset > slowAt && config.speed <= 0) {
+        return;
+    }
+
     ctx.clearRect(0, 0, config.width, config.height);
 
     // 1. Draw all connection rungs first so subsequent objects are drawn on top
     forEachPhaseIncrement( (y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
+        let [shortLDotX, shortRStrandX] = getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
+
+        drawConnectingRungs(y, shortRStrandX, shortLDotX);
+    });
+
+    function getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) {
         let shortLDotX, shortRStrandX;
         const rStrandRadius = config.strands.right.radius;
         const lDotRadius = config.strands.left.radius;
@@ -30,9 +55,8 @@ function drawHelix(ctx, config) {
                 shortLDotX = 0;
             }
         }
-
-        drawConnectingRungs(y, shortRStrandX, shortLDotX);
-    });
+        return [shortRStrandX, shortLDotX];
+    }
 
     // 2. Draw all of the background amino acids
     forEachPhaseIncrement((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
@@ -44,11 +68,39 @@ function drawHelix(ctx, config) {
         }
     });
 
+    function getAminoAcidIndex(y, offset) {
+        return Math.floor( (y + offset) / config.strands.left.spacing );
+    }
+
     // 3. Draw the remaining, foreground amino acids
     forEachPhaseIncrement((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
         const leftStrandIsCloser = scaleLeftDot > scaleRightStrand;
         if (leftStrandIsCloser) {
             drawDottedLeftStrand(y, lDotX, scaleLeftDot);
+
+            //////////////////////////
+            // HandDrawingLettering //
+            //////////////////////////
+            let [shortLDotX, shortRStrandX] = getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
+            const acidIndex = getAminoAcidIndex(y, offset);
+
+            // at offset 0, we adjust our target region by nothing
+            // at offset 1, we adjust our target region by bound - f(offset) where f(offset) is
+            // const targetRegionOffset = (offset / config.speed) % (config.height - 300);
+            const targetRegionOffset = (offset * 30) % (config.height);
+            const lowerBound = config.height - targetRegionOffset - 300;
+            const upperBound = config.height - targetRegionOffset;
+            // TODO: Make this target region wander with time (offset)
+            // it should flow up the y axis, so decreasing lower and upper bounds
+            // but it must reset using a modulus function
+            const isInTargetRegion = (lowerBound < y && y < upperBound);
+            const isOverlappedAminoAcid = shortLDotX == 0;
+
+            if (isOverlappedAminoAcid && isInTargetRegion) {
+                if (y % 30 == 0) {
+                    drawWord(y, lDotX, words[acidIndex % words.length]);
+                }
+            }
         } else {
             drawSolidRightStrand(y, rStrandX, scaleRightStrand);
         }
@@ -58,7 +110,6 @@ function drawHelix(ctx, config) {
         const centerX = config.width / 2;
         const startY = -10;
         const endY = config.height + 10;
-        // const endY = config.height - 10;
 
         for (let y = startY; y <= endY; y += 1) {
             const phase = y * config.frequency + offset;
@@ -90,29 +141,55 @@ function drawHelix(ctx, config) {
     }
 
     function drawSolidRightStrand(y, rStrandX, scaleRightStrand) {
-        ctx.beginPath();
-        ctx.arc(rStrandX, y, config.strands.right.radius * scaleRightStrand, 0, Math.PI * 2);
-        ctx.strokeStyle = config.strands.right.stroke_color;
-        ctx.lineWidth = 4;
-        ctx.fillStyle = config.strands.right.fill_color;
-        // ctx.fill();
-        ctx.stroke();
+        if (y % 2 === 0) {
+            ctx.beginPath();
+            ctx.arc(rStrandX, y, config.strands.right.radius * scaleRightStrand, 0, Math.PI * 2);
+            ctx.strokeStyle = config.strands.right.stroke_color;
+            ctx.lineWidth = 4;
+            ctx.fillStyle = config.strands.right.fill_color;
+            // ctx.fill();
+            ctx.stroke();
+        }
     }
 
-    function drawDottedLeftStrand(y, lDotX, scaleLeftDot) {
+    function drawDottedLeftStrand(y, lDotX, scaleLeftDot, color) {
         if (y % config.strands.left.spacing === 0) {
             ctx.beginPath();
             ctx.arc(lDotX, y, config.strands.left.radius * scaleLeftDot, 0, Math.PI * 2);
-            ctx.fillStyle = config.strands.left.fill_color;
+            ctx.strokeStyle = config.strands.right.stroke_color;
+            ctx.fillStyle = color || config.strands.left.fill_color;
             ctx.lineWidth = 2;
             ctx.fill();
             ctx.stroke();
         }
     }
 
-    offset += config.speed;
-    if (enabled)
-        requestAnimationFrame( () => { drawHelix(ctx, config) } );
+    function drawWord(y, lDotX, word) {
+        let offsetX = -12; // Ruby and Rails work....
+        if (word.length == 3) {
+            offsetX = -8;
+        }
+        if (word.length == 2) {
+            offsetX = -6;
+        }
+        const offsetY = 4;
+        lDotX = Math.floor(lDotX); // make text less fuzzy
+
+        // Modulate opacity by distance from centerX
+        const centerX = config.width / 2;
+        const delta = Math.abs(centerX - lDotX);
+        const opacity = 1 - (delta / 11);
+
+        ctx.font = "12px serif";
+        ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+        ctx.fillText(word, lDotX + offsetX, y + offsetY);
+    }
+
+    if (config.loop) {
+        offset += config.speed;
+        if (enabled)
+            requestAnimationFrame( () => { drawHelix(ctx, config) } );
+    }
 }
 
 // Helper function to convert hex color to RGB
@@ -129,13 +206,33 @@ function hexToRgb(hex) {
     return `${r}, ${g}, ${b}`;
 }
 
-
+const cWidth = 180;
+const cHeight = window.innerHeight;
 // On load...
 const canvas = document.getElementById('helixCanvas');
 const helixContainer = canvas.parentElement;
-canvas.width = 180;
+canvas.width = cWidth;
+// canvas.width = 1080;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
+
+function setupCanvas(canvas) {
+  // Get the device pixel ratio, falling back to 1.
+  var dpr = window.devicePixelRatio || 1;
+  // Get the size of the canvas in CSS pixels.
+  var rect = canvas.getBoundingClientRect();
+  // Give the canvas pixel dimensions of their CSS
+  // size * the device pixel ratio.
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  var ctx = canvas.getContext('2d');
+  // Scale all drawing operations by the dpr, so you
+  // don't have to worry about the difference.
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
+setupCanvas(canvas);
 
 // Allow user to disable and hide helix
 helixContainer.onclick = () => {
@@ -157,10 +254,12 @@ helixContainer.onclick = () => {
 }
 
 const config = {
+    loop: true,
     // Customize the helix/ sine wave here
     amplitude: 50,
     frequency: 0.02,
-    speed: 0.005,
+    // speed: 0.005,  // best speed...
+    speed: 0.02,
     strands: {
         left: {
             fill_color: '#00adcc',
@@ -177,16 +276,20 @@ const config = {
         color: '#33333330',
         width: 4
     },
-    width: canvas.width,
-    height: canvas.height,
+    width: cWidth,
+    height: cHeight,
 };
 
 
-// const slider = document.getElementById("helix");
-// slider.oninput = (e) => {
-//     // console.log(e.target.value);
-//     const adj = 9 + e.target.value * 0.001
-//     drawHelix(ctx, config, adj);  // An engulfed frame
-// }
+const debugSlider = document.getElementById("slider");
+    if (debugSlider) {
+
+    debugSlider.oninput = (e) => {
+        offset = e.target.value * 0.1;
+
+        drawHelix(ctx, config);
+    }
+}
+
 
 drawHelix(ctx, config);

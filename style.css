@@ -27,10 +27,13 @@ body {
   position: fixed;
   top: 0px;
   right: 0px;
+
+  canvas {
+    width: 180px; /* these dimensions difer to ensure our resolution is good... */
+  }
 }
 
 @media (max-width: 1000px) {
-  /* Visible now means hidden in this context... */
   .hideable {
     visibility: hidden;
     opacity: 0;
@@ -128,7 +131,6 @@ ul.projects {
       width: 200px;
       margin-left: 20px;
       margin-right: 20px;
-      /* border: 1px solid #ddd; */
     }
 
     .image {
@@ -152,7 +154,7 @@ ul.projects {
       }
     }
 
-    /* Natural paragraph-style description */
+    /* The natural paragraph-style description */
     p.description {
       order: 2;
       display: block;
