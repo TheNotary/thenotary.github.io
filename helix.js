@@ -1,7 +1,7 @@
-function drawHelix(ctx, config, offset) {
-    if (offset === undefined) {
-        offset = 0;
-    }
+let enabled = true;
+let offset = 0;
+
+function drawHelix(ctx, config) {
     ctx.clearRect(0, 0, config.width, config.height);
 
     // 1. Draw all connection rungs first so subsequent objects are drawn on top
@@ -111,7 +111,8 @@ function drawHelix(ctx, config, offset) {
     }
 
     offset += config.speed;
-    requestAnimationFrame( () => { drawHelix(ctx, config, offset) } );
+    if (enabled)
+        requestAnimationFrame( () => { drawHelix(ctx, config) } );
 }
 
 // Helper function to convert hex color to RGB
@@ -134,6 +135,13 @@ const canvas = document.getElementById('helixCanvas');
 canvas.width = 180;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
+
+canvas.onclick = () => {
+    enabled = !enabled
+    if (enabled) {
+        drawHelix(ctx, config, 9);
+    }
+}
 
 const config = {
     // Customize the helix/ sine wave here
@@ -168,5 +176,4 @@ const config = {
 //     drawHelix(ctx, config, adj);  // An engulfed frame
 // }
 
-// drawHelix(ctx, config, 9.3); // A close frame
-drawHelix(ctx, config, 9);  // An engulfed frame
+drawHelix(ctx, config);
