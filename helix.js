@@ -1,10 +1,14 @@
+// will disable looping and show the slider that controls the time for the helix
+let debugWithSlider = false;
+
 // Helix State
 let enabled = true;
 let offset = 0;
 let slowAt = 13;
 
 // Draw Word State
-const words = [ "Ruby", "Py", "Go", "JS", "Rails", "CI", "k8s", "C++", "TS", "Java", "C#" ];
+const words = [ "Py", "Ruby","Go", "JS", "Rails", "CI", "k8s", "C++", "TS",
+                "Java", "C#", "Bash", "AWS", "GCP" ];
 let textEdge = true;
 let wordIndex = 0;
 
@@ -141,7 +145,7 @@ function drawHelix(ctx, config) {
     }
 
     function drawSolidRightStrand(y, rStrandX, scaleRightStrand) {
-        if (y % 2 === 0) {
+        if (y % 3 === 0) {
             ctx.beginPath();
             ctx.arc(rStrandX, y, config.strands.right.radius * scaleRightStrand, 0, Math.PI * 2);
             ctx.strokeStyle = config.strands.right.stroke_color;
@@ -181,11 +185,12 @@ function drawHelix(ctx, config) {
         const opacity = 1 - (delta / 11);
 
         ctx.font = "12px serif";
-        ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+        const color = "66";
+        ctx.fillStyle = `rgba(${color}, ${color}, ${color}, ${opacity})`;
         ctx.fillText(word, lDotX + offsetX, y + offsetY);
     }
 
-    if (config.loop) {
+    if (config.loop && !debugWithSlider) {
         offset += config.speed;
         if (enabled)
             requestAnimationFrame( () => { drawHelix(ctx, config) } );
@@ -280,9 +285,9 @@ const config = {
     height: cHeight,
 };
 
-
-const debugSlider = document.getElementById("slider");
-    if (debugSlider) {
+if (debugWithSlider) {
+    const debugSlider = document.getElementById("slider");
+    debugSlider.classList.remove('no-render');
 
     debugSlider.oninput = (e) => {
         offset = e.target.value * 0.1;

@@ -23,6 +23,14 @@ body {
   font-family: Arial, sans-serif;
 }
 
+ul {
+  list-style: none;
+}
+
+.no-render {
+  display: none;
+}
+
 .helix-container {
   position: fixed;
   top: 0px;
@@ -59,25 +67,17 @@ body {
   text-align: center;
 }
 
+h1.title {
+  color: var(--primary-color);
+}
+
 h3.title {
-  margin-top: -20px;
+  color: #888;
 }
 
 section.intro {
   display: flex;
   justify-content: space-between;
-
-  .summary {
-  }
-
-}
-
-ul {
-  list-style: none;
-}
-
-li {
-  margin-bottom: 20px;
 }
 
 .wrap {
@@ -93,12 +93,23 @@ ul.projects {
 
   /* Project Item */
   li {
+    margin-bottom: 20px;
+
+    &:nth-child(odd) .image-container {
+      float: left;
+      margin-left: 0px;
+    }
+
+    &:nth-child(even) .image-container {
+      float: right;
+      margin-left: 20px;
+    }
 
     /* Make tags look like rounded "bubbles" */
     ul.tags {
       order: 1;
 
-      margin-top: 3px;
+      margin-top: 0px;
       margin-bottom: 8px;
 
       list-style: none;
@@ -109,8 +120,8 @@ ul.projects {
         display: inline-block;
         cursor: default;
 
-        margin-top: 6px;
-        margin-bottom: 2px;
+        margin-top: 0px;
+        margin-bottom: 5px;
         margin-right: 8px;
 
         background: var(--secondary-color);
@@ -127,21 +138,30 @@ ul.projects {
     }
 
     div.image-container {
-      float: right;
       width: 200px;
       margin-left: 20px;
       margin-right: 20px;
     }
 
     .image {
-      background-color: var(--secondary-light-color);
       width: 100%;
       border-radius: 40px;
       opacity: 80%;
+      /* max-height: 142px; */
+    }
+
+    a.subject.no-link {
+      &:hover {
+        cursor: default;
+        text-decoration: none;
+        color: var(--primary-color);
+      }
     }
 
     /* Link/ header description */
     a.subject {
+      display: inline-block;
+      margin-bottom: 9px;
       order: 0;
       font-weight: bold;
       font-size: 18px;
@@ -152,18 +172,34 @@ ul.projects {
         text-decoration: underline;
         color: var(--primary-light-color);
       }
+
+      &.gh::before {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 4px;
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' %3E%3Cpath  fill='%2300111a' d='M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z' /%3E%3C/svg%3E")
+      }
+    }
+
+    p {
+      margin-top: 0px;
+      margin-bottom: 16px;
     }
 
     /* The natural paragraph-style description */
-    p.description {
+    .description {
       order: 2;
       display: block;
       font-size: 16px;
-      /* text-indent: 2rem; */
-      /* padding-left: 2rem; */
 
       color: #333;
-      margin-top: 4px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+
+      p:not(:first-child) {
+        text-indent: 2rem;
+      }
 
       a {
         color: var(--primary-color);
@@ -174,6 +210,8 @@ ul.projects {
           text-decoration: underline;
         }
       }
+
     }
+
   }
 }
