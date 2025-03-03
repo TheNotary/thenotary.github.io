@@ -3,7 +3,7 @@ let debugWithSlider = false;
 
 // Helix State
 let enabled = true;
-let offset = 0;
+let time = 0;
 let slowAt = 13;
 
 // Draw Word State
@@ -14,25 +14,78 @@ let wordIndex = 0;
 
 let overlappers = [];
 
+// Algo Summary
+// We draw in 3 passes to ensure that objects 'closer' to the camera are
+// correctly overlapping objects 'behind' the camera.
+// A pass is performed via the forEachYCrossOfTheCanvas measure which accepts
+// a block containing the operations to run at each y cross section.
+// After each draw takes place, we call requestAnimationFrame to recursively
+// call this function and increment time.
 function drawHelix(ctx, config) {
     // Decelerate when we hit the break point
-    if (offset > slowAt) {
+    if (time > slowAt) {
         config.speed -= 0.0001;
     }
 
     // stop when we're going reverse long enough to feel cool :)
-    if (offset > slowAt && config.speed <= 0) {
+    if (time > slowAt && config.speed <= 0) {
         return;
     }
 
     ctx.clearRect(0, 0, config.width, config.height);
 
     // 1. Draw all connection rungs first so subsequent objects are drawn on top
-    forEachPhaseIncrement( (y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
+    forEachYCrossOfTheCanvas( (y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
         let [shortLDotX, shortRStrandX] = getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
 
-        drawConnectingRungs(y, shortRStrandX, shortLDotX);
+        drawConnectingRung(y, shortRStrandX, shortLDotX);
     });
+
+    // 2. Draw all of the background amino acids
+    forEachYCrossOfTheCanvas((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
+        const leftStrandIsCloser = scaleLeftDot > scaleRightStrand;
+        if (leftStrandIsCloser) {
+            drawSolidRightStrand(y, rStrandX, scaleRightStrand);
+        } else {
+            drawDottedLeftStrand(y, lDotX, scaleLeftDot);
+        }
+    });
+
+
+
+    // 3. Draw the remaining, foreground amino acids
+    forEachYCrossOfTheCanvas((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
+        const leftStrandIsCloser = scaleLeftDot > scaleRightStrand;
+        if (leftStrandIsCloser) {
+            drawDottedLeftStrand(y, lDotX, scaleLeftDot);
+
+            handleDrawingWords(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
+        } else {
+            drawSolidRightStrand(y, rStrandX, scaleRightStrand);
+        }
+    });
+
+    function forEachYCrossOfTheCanvas(cb) {
+        const centerX = config.width / 2;
+        const startY = -10;
+        const endY = config.height + 10;
+
+        for (let y = startY; y <= endY; y += 1) {
+            const phase = y * config.frequency + time;
+
+            // Right strand X value (solid wave)
+            const rStrandX = centerX + Math.sin(phase) * config.amplitude;
+
+            // Left dot X Value (dotted amino acids, opposite phase)
+            const lDotX = centerX + Math.sin(phase + Math.PI) * config.amplitude;
+
+            const minSize = 2.5;
+            const scaleLeftDot     = (minSize + (-1 * Math.cos(phase)) )  * 0.7;  // smallest at 0
+            const scaleRightStrand = (minSize + ( 1 * Math.cos(phase)) )  * 0.7;  // largest at 0
+
+            cb(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
+        }
+    }
 
     function getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) {
         let shortLDotX, shortRStrandX;
@@ -62,78 +115,12 @@ function drawHelix(ctx, config) {
         return [shortRStrandX, shortLDotX];
     }
 
-    // 2. Draw all of the background amino acids
-    forEachPhaseIncrement((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
-        const leftStrandIsCloser = scaleLeftDot > scaleRightStrand;
-        if (leftStrandIsCloser) {
-            drawSolidRightStrand(y, rStrandX, scaleRightStrand);
-        } else {
-            drawDottedLeftStrand(y, lDotX, scaleLeftDot);
-        }
-    });
-
-    function getAminoAcidIndex(y, offset) {
-        return Math.floor( (y + offset) / config.strands.left.spacing );
-    }
-
-    // 3. Draw the remaining, foreground amino acids
-    forEachPhaseIncrement((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
-        const leftStrandIsCloser = scaleLeftDot > scaleRightStrand;
-        if (leftStrandIsCloser) {
-            drawDottedLeftStrand(y, lDotX, scaleLeftDot);
-
-            //////////////////////////
-            // HandDrawingLettering //
-            //////////////////////////
-            let [shortLDotX, shortRStrandX] = getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
-            const acidIndex = getAminoAcidIndex(y, offset);
-
-            // at offset 0, we adjust our target region by nothing
-            // at offset 1, we adjust our target region by bound - f(offset) where f(offset) is
-            // const targetRegionOffset = (offset / config.speed) % (config.height - 300);
-            const targetRegionOffset = (offset * 30) % (config.height);
-            const lowerBound = config.height - targetRegionOffset - 300;
-            const upperBound = config.height - targetRegionOffset;
-            // TODO: Make this target region wander with time (offset)
-            // it should flow up the y axis, so decreasing lower and upper bounds
-            // but it must reset using a modulus function
-            const isInTargetRegion = (lowerBound < y && y < upperBound);
-            const isOverlappedAminoAcid = shortLDotX == 0;
-
-            if (isOverlappedAminoAcid && isInTargetRegion) {
-                if (y % 30 == 0) {
-                    drawWord(y, lDotX, words[acidIndex % words.length]);
-                }
-            }
-        } else {
-            drawSolidRightStrand(y, rStrandX, scaleRightStrand);
-        }
-    });
-
-    function forEachPhaseIncrement(cb) {
-        const centerX = config.width / 2;
-        const startY = -10;
-        const endY = config.height + 10;
-
-        for (let y = startY; y <= endY; y += 1) {
-            const phase = y * config.frequency + offset;
-
-            // Right strand X value (solid wave)
-            const rStrandX = centerX + Math.sin(phase) * config.amplitude;
-
-            // Left dot X Value (dotted amino acids, opposite phase)
-            const lDotX = centerX + Math.sin(phase + Math.PI) * config.amplitude;
-
-            const minSize = 2.5;
-            const scaleLeftDot     = (minSize + (-1 * Math.cos(phase)) )  * 0.7;  // smallest at 0
-            const scaleRightStrand = (minSize + ( 1 * Math.cos(phase)) )  * 0.7;  // largest at 0
-
-            cb(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
-        }
+    function getAminoAcidIndex(y, time) {
+        return Math.floor( (y + time) / config.strands.left.spacing );
     }
 
     // Draw the connecting rungs between strands at intervals
-    function drawConnectingRungs(y, rStrandX, lDotX) {
+    function drawConnectingRung(y, rStrandX, lDotX) {
         if (y % config.strands.left.spacing === 0) {
             ctx.beginPath();
             ctx.moveTo(rStrandX, y);
@@ -168,6 +155,28 @@ function drawHelix(ctx, config) {
         }
     }
 
+    // TODO: I'm not convinced of the correctness of this function
+    function handleDrawingWords(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) {
+        let [shortLDotX, shortRStrandX] = getRungEndPoints(y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand);
+        const acidIndex = getAminoAcidIndex(y, time);
+
+        // const targetRegionOffset = (time / config.speed) % (config.height - 300);
+        const targetRegionOffset = (time * 30) % (config.height);
+        const lowerBound = config.height - targetRegionOffset - 300;
+        const upperBound = config.height - targetRegionOffset;
+        // TODO: Make this target region wander with time (time)
+        // it should flow up the y axis, so decreasing lower and upper bounds
+        // but it must reset using a modulus function
+        const isInTargetRegion = (lowerBound < y && y < upperBound);
+        const isOverlappedAminoAcid = shortLDotX == 0;
+
+        if (isOverlappedAminoAcid && isInTargetRegion) {
+            if (y % 30 == 0) {
+                drawWord(y, lDotX, words[acidIndex % words.length]);
+            }
+        }
+    }
+
     function drawWord(y, lDotX, word) {
         let offsetX = -12; // Ruby and Rails work....
         if (word.length == 3) {
@@ -191,7 +200,7 @@ function drawHelix(ctx, config) {
     }
 
     if (config.loop && !debugWithSlider) {
-        offset += config.speed;
+        time += config.speed;
         if (enabled)
             requestAnimationFrame( () => { drawHelix(ctx, config) } );
     }
@@ -263,8 +272,9 @@ const config = {
     // Customize the helix/ sine wave here
     amplitude: 50,
     frequency: 0.02,
+    // frequency: 0.02,
     // speed: 0.005,  // best speed...
-    speed: 0.02,
+    speed: 0.02,      // latest best speed
     strands: {
         left: {
             fill_color: '#00adcc',
@@ -290,7 +300,7 @@ if (debugWithSlider) {
     debugSlider.classList.remove('no-render');
 
     debugSlider.oninput = (e) => {
-        offset = e.target.value * 0.1;
+        time = e.target.value * 0.1;
 
         drawHelix(ctx, config);
     }

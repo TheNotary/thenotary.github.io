@@ -8,13 +8,15 @@
 
   --heading-color: #111;
   --paragraph-color: #333;
-
+  --paragraph-calm-color: #888;
   --mystery-color: #00111a;
 }
 
 h1, h2, h3, strong {
+  /* color: var(--paragraph-calm-color); */
   /* color: var(--heading-color); */
-  color: var(--mystery-color);
+  /* color: var(--primary-color); */
+  /* color: var(--mystery-color); */
 }
 
 body {
@@ -72,12 +74,10 @@ h1.title {
 }
 
 h3.title {
-  color: #888;
+  color: var(--paragraph-calm-color);
 }
 
 section.intro {
-  display: flex;
-  justify-content: space-between;
 }
 
 .wrap {
