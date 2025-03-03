@@ -1,0 +1,59 @@
+
+.lambda-poke {
+  position: relative;
+}
+
+.lambda-poke button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background:    linear-gradient(135deg, #0077cc 0%, #1b51a8 100%);
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lambda-poke button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lambda-poke button:hover {
+  background:    linear-gradient(135deg, #0067bc 0%, #0b4198 100%);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lambda-poke button:active {
+  transform: scale(0.98);
+}
+
+#lambda-toast {
+  /* Center the toast to it's container */
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+
+#lambda-toast.show {
+  opacity: 1;
+  visibility: visible;
+}
