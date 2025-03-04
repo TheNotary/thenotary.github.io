@@ -16,14 +16,19 @@
   <h1 class="title">
     <span id="real_name">TheNotary</span>
   </h1>
-  <h3 class="title">Technology Leader | Fullstack Engineer & Architect | DevSecTestOps</h3>
+  <h3 id="subtitle" class="title animate" onclick="resetAnimation()">
+    <span>Fullstack Engineer </span>|
+    <span>Architect </span>|
+    <span>Technology Leader </span>|
+    <span>DevSecTestOps</span>
+  </h3>
 
   <section class="intro">
     <div>
       <p id="msg" class="summary"></p>
     </div>
 
-    <div class="contact well">
+    <div id="contact" class="contact well animate">
       <div class="centered-container">
 
         <div class="location">
@@ -37,7 +42,7 @@
           <span id="phone">(123) 456-7891</span>
         </div>
 
-        <div class="lambda-poke">
+        <!-- <div class="lambda-poke">
           <aside id="lambda-toast"></aside>
           <button onclick="lambdaPoke();">
             <svg width="20px" height="20px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -47,7 +52,7 @@
             </svg>
             Send me a poke via AWS Lambda
           </button>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -56,311 +61,313 @@
   <script type="text/javascript" src="PutName.js"></script>
 
 
-  <h2>Interested in my Work?</h2>
-  <ul class="projects">
-    <li>
-      <a class="subject no-link" href="#">
-        Gilligan: An Infrastructure Automation Drone Plugin
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/boat-blueprint.jpg" ></image>
-      </div>
-      <ul class="tags">
-        <li>Cloud Transformations</li>
-        <li>CI/ CD Plugin</li>
-        <li>Drone/ Vela</li>
-        <li>Deployments-as-Code</li>
-        <li>Containerization</li>
-        <li>Ruby</li>
-        <li>Work</li>
-        <li>Architecture and Design</li>
-      </ul>
-      <div class="description">
-        <p>
-          I led the release of this Ruby-based CI/ CD plugin while consulting at Cargill.  This project, was by-and-large the highlight of my time consulting for Cargill.  The client was on their journey towards public-cloud adoption and were making great strides.  An infrastructure team had been spun up to build <strong>Captain</strong> which enabled the enterprise's development teams to define all of their deployments to AWS as code using a syntax fairly similar to Kubernetes manifest files.
-        </p>
-        <p>
-          But there was one problem; due to networking constraints, not all workloads could actually go to AWS.  For on-prem workloads, there was no deployment-as-code solution requiring engineers to learn a nuanced web interface for configuring VMs, and then navigate it everytime a new workload was needed.  After a few weeks of development and with help from some of the amazing engineers at Cargill, I released <strong>Gilligan</strong>, a Ruby-based CI/ CD plugin that served as an on-prem counterpart to the existing Captain solution.
-        </p>
-      </div>
-    </li>
+  <section class="my-work">
+    <h2>Interested in my Work?</h2>
+    <ul class="projects">
+      <li>
+        <a class="subject no-link" href="#">
+          Gilligan: An Infrastructure Automation Drone Plugin
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/boat-blueprint.jpg" ></image>
+        </div>
+        <ul class="tags">
+          <li>Cloud Transformations</li>
+          <li>CI/ CD Plugin</li>
+          <li>Drone/ Vela</li>
+          <li>Deployments-as-Code</li>
+          <li>Containerization</li>
+          <li>Ruby</li>
+          <li>Work</li>
+          <li>Architecture and Design</li>
+        </ul>
+        <div class="description">
+          <p>
+            I led the release of this Ruby-based CI/ CD plugin while consulting at Cargill.  This project, was by-and-large the highlight of my time consulting for Cargill.  The client was on their journey towards public-cloud adoption and were making great strides.  An infrastructure team had been spun up to build <strong>Captain</strong> which enabled the enterprise's development teams to define all of their deployments to AWS as code using a syntax fairly similar to Kubernetes manifest files.
+          </p>
+          <p>
+            But there was one problem; due to networking constraints, not all workloads could actually go to AWS.  For on-prem workloads, there was no deployment-as-code solution requiring engineers to learn a nuanced web interface for configuring VMs, and then navigate it everytime a new workload was needed.  After a few weeks of development and with help from some of the amazing engineers at Cargill, I released <strong>Gilligan</strong>, a Ruby-based CI/ CD plugin that served as an on-prem counterpart to the existing Captain solution.
+          </p>
+        </div>
+      </li>
 
-    <li>
-      <a class="subject" href="https://github.com/TheNotary/keyboard_driver_sk80">
-        A C++ Keyboard Driver
-      </a>
-
-      <div class="image-container">
-        <image class="image" src="images/keeb.jpg" ></image>
-      </div>
-
-      <ul class="tags">
-        <li>C++</li>
-        <li>x86 Reverse Engineering</li>
-        <li>Wireshark</li>
-        <li>Windows Userspace Driver</li>
-      </ul>
-      <p class="description">
-        This project controls the lights on my keyboard and helped me refresh my x86 reverse engineering skills. This project includes an accompanying
-        <a href="https://gist.github.com/TheNotary/ce7844f9333bca7fafcc7409ca6d657b">article</a>
-        documenting the reverse engineering techniques I used throughout the process.  As a fun bonus, this article was commented on and republished in <a href="https://hackaday.com/">hackaday's</a> blog.
-      </p>
-    </li>
-
-
-    <li>
-        <a class="subject no-link" href="#gitlab/apps/j____.git">
-          Rails 8.0, Ruby Gems, GenAI Automation Project
+      <li>
+        <a class="subject" href="https://github.com/TheNotary/keyboard_driver_sk80">
+          A C++ Keyboard Driver
         </a>
 
-        <!-- TODO: Double check if this collage is giving me AI nausia -->
-        <!-- <div class="image-container">
-          <image class="image" src="images/rails_and_friends.png" ></image>
-        </div> -->
+        <div class="image-container">
+          <image class="image" src="images/keeb.jpg" ></image>
+        </div>
 
         <ul class="tags">
-          <li>Fullstack</li>
-          <li>Rails</li>
-          <li>Ruby Gems</li>
-          <li>Stimulus</li>
-          <li>Turbo</li>
-          <li>AcviteJob</li>
-          <li>Action Cable</li>
-          <li>Postgres</li>
-          <li>MiniTest</li>
-          <li>RSpec</li>
-          <li>GenAI</li>
-          <li>ML Pipeline</li>
-          <li>SpaCy</li>
-          <li>pgvector</li>
-          <li>llama-cpp-python</li>
+          <li>C++</li>
+          <li>x86 Reverse Engineering</li>
+          <li>Wireshark</li>
+          <li>Windows Userspace Driver</li>
         </ul>
-
         <p class="description">
-          This is my latest and most ambitious Rails app I've ever worked on and should absolutely be referenced in future projects where I might use technologies from the Rails ecosystem (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) or any interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
+          This project controls the lights on my keyboard and helped me refresh my x86 reverse engineering skills. This project includes an accompanying
+          <a href="https://gist.github.com/TheNotary/ce7844f9333bca7fafcc7409ca6d657b">article</a>
+          documenting the reverse engineering techniques I used throughout the process.  As a fun bonus, this article was commented on and republished in <a href="https://hackaday.com/">hackaday's</a> blog.
+        </p>
+      </li>
+
+
+      <li>
+          <a class="subject no-link" href="#gitlab/apps/j____.git">
+            Rails 8.0, Ruby Gems, GenAI Automation Project
+          </a>
+
+          <!-- TODO: Double check if this collage is giving me AI nausia -->
+          <!-- <div class="image-container">
+            <image class="image" src="images/rails_and_friends.png" ></image>
+          </div> -->
+
+          <ul class="tags">
+            <li>Fullstack</li>
+            <li>Rails</li>
+            <li>Ruby Gems</li>
+            <li>Stimulus</li>
+            <li>Turbo</li>
+            <li>AcviteJob</li>
+            <li>Action Cable</li>
+            <li>Postgres</li>
+            <li>MiniTest</li>
+            <li>RSpec</li>
+            <li>GenAI</li>
+            <li>ML Pipeline</li>
+            <li>SpaCy</li>
+            <li>pgvector</li>
+            <li>llama-cpp-python</li>
+          </ul>
+
+          <p class="description">
+            This is my latest and most ambitious Rails app I've ever worked on and should absolutely be referenced in future projects where I might use technologies from the Rails ecosystem (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) or any interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python).
+          </p>
+
+      </li>
+
+      <li>
+        <a class="subject" href="https://github.com/TheNotary/edu-offline-webapp-demo">
+          A Frameworkless, Offline, DB Synchronizing Web App
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/low-signal.png" ></image>
+        </div>
+        <ul class="tags">
+          <li>Architecture and Design</li>
+          <li>Reference Implementation</li>
+          <li>Written Communication</li>
+          <li>WebAPIs</li>
+          <li>Javascript</li>
+          <li>Offline Apps</li>
+        </ul>
+        <p class="description">
+          One of my clients required an application that could be used in an environment with inconsistent network availability.  Among the options I presented was this PoC which allowed for users to download the web app when networking was operational, supported offline usage via the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Worker API</a>, secures the data at rest via AES and performs DB synchronization with a simple backend mockup I did in Node.
+        </p>
+      </li>
+
+      <li>
+        <a class="subject no-link" href="#gitlab/maker_and_hardware/rpi/hardware-ras_____.git">
+          A React, Capacitor, Python, Embedded ARM, Mobile Gadget
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/arm.png" ></image>
+        </div>
+        <ul class="tags">
+          <li>React</li>
+          <li>Capacitor</li>
+          <li>Python</li>
+          <li>Embedded</li>
+          <li>ARM</li>
+          <li>iOS</li>
+          <li>Android</li>
+        </ul>
+        <p class="description">
+          An up-coming kickstarter project for a device with a react/ capacitor-based frontend for web/ mobile interactions, two embedded python services, and an ARM Cortex-A based device running those two services on linux.  I really enjoyed building out the infrastructure related to this project.  I learned a lot about AWS and their IPV6 support that can allow for some very economical networking solutions.  This project is currently closed source while I source financing for the marketing aspects of the campaign, but I'm hopeful it makes traction and forms a strong community in the automation space.
+        </p>
+      </li>
+
+      <li>
+        <a class="subject" href="https://github.com/TriNetCo/pax-imperia-clone">
+          Pax Imperia Clone
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/pax.jpg" ></image>
+        </div>
+        <ul class="tags">
+          <li>React</li>
+          <li>NPM Library Packaging</li>
+          <li>ThreeJS</li>
+          <li>Golang</li>
+          <li>Websockets</li>
+          <li>Networking</li>
+          <li>GCP</li>
+        </ul>
+        <p class="description">
+          A collaborative effort where myself and three colleagues set out to recreate Pax Imperia in web technologies.  We used Javascript, Go, and a tiny bit of React to build out the multiplayer experience.  Due to cloud costs, the backend is no longer available, but don't let that stop you from checking out the <a href="https://pax.njax.org/" target="_">demo</a>.  Also, the assets are kind of heavy so you might need to give it some time before the space view renders planets and ships.
+        </p>
+      </li>
+
+      <li>
+        <a class="subject" href="https://github.com/TheNotary/cshrp_websocket_edu">
+          C# Websocket Implementation
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/rfc.jpg" ></image>
+        </div>
+        <ul class="tags">
+          <li>C#</li>
+          <li>Library Packaging</li>
+          <li>Statically Typed Testing Patterns</li>
+          <li>Streams</li>
+          <li>Implementation to Spec</li>
+          <li>multi-threaded</li>
+          <li>pubsub</li>
+        </ul>
+        <div class="description">
+          <p>
+            While between contracting clients and wanting to both brush up on my C# and also study websockets, I decided to spend a week writing a C# library based on <a href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a> that uses nothing but TCP sockets as a basis.  It was fun pouring over the RFC whitepaper and piecing the protocol together in C# and also gave me that implementation practice in C# I hadn't been getting enough of over the past few years.  The library was eventually packaged for consumption via Unity.  I used the <a href="https://learn.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern">Observer design pattern</a> to implement a pub/ sub functionality.
+          </p>
+          <p>
+            Writing well tested code is important to me, it relieves me of the doubt and concern that otherwise comes hand-in-hand with code changes.  The satisfactory test coverage in this project is owed to my use of the <a href="https://refactoring.guru/design-patterns/adapter/csharp/example">Adapter Pattern</a> which allows me to use real NetworkStreams in my production code, and switch to a mocked out implementation when running my tests.
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <a class="subject" href="https://github.com/TheNotary/fish_poop/tree/gh-pages/keyboard_memory">
+          Mario Teaches Typing an educational browser game
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/press-f.jpg" ></image>
+        </div>
+        <ul class="tags">
+          <li>VanillaJS</li>
+          <li>Educational Game Dev</li>
+          <li>Jasmine Integration Testing</li>
+          <li>Web Audio API</li>
+        </ul>
+        <p class="description">
+          I wrote this to help my nephew remember where the keys are on the keyboard without looking.  It's been agest but the <a href="https://thenotary.github.io/fish_poop/keyboard_memory/index.html">demo</a> appears to be operational.
+        </p>
+      </li>
+
+      <li>
+        <a class="subject" href="https://github.com/TheNotary/initial_fantasy">
+          Initial Fantasy a browser game
+        </a>
+        <ul class="tags">
+          <li>Oldschool prototypical VanillaJS</li>
+          <li>Canvas API</li>
+        </ul>
+        <p class="description">
+          Initial Fantasy is a clone that I started of an old game from 1991.  I was inspired to do this shortly after the HTML Canvas API began to see browser adoption.
+        </p>
+      </li>
+
+      <li>
+        <a class="subject no-link" href="#">
+          5 yrs with Optum, Cloud Engineering, Data Engineering, Software Engineering, etc.
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/optum.jpg" ></image>
+        </div>
+        <ul class="tags">
+          <li>Work</li>
+          <li>DevSecOps</li>
+          <li>CI/ CD</li>
+          <li>Vault</li>
+          <li>Java</li>
+          <li>Python</li>
+          <li>Spring Boot</li>
+          <li>JTest</li>
+          <li>Rest APIs</li>
+          <li>Kafka</li>
+          <li>Event-Driven</li>
+          <li>k8s</li>
+          <li>Infrastructure</li>
+          <li>CI/ CD Pipeline Library Development</li>
+          <li>Terraform</li>
+          <li>Airflow</li>
+          <li>HIVE</li>
+          <li>HBase</li>
+          <li>Hadoop</li>
+          <li>TLS Cert Management</li>
+        </ul>
+        <p class="description">
+          I worked with a lot of different technologies at Optum.  I developed Rest APIs using Java Spring Boot, defined infrastructure as code using Ansible influenced idempotent provisioners, defined deployments to Openshift and Kubernetes via k8s manifest files, managed a Kafka services used by multiple teams, built CI/ CD pipelines to manage deployments,  contributed to the design and implementation of the enterprise's centralized CI/ CD pipeline library, did cloud engineering "stuff" with AWS and terraform, and did miscellaneous data engineering "stuff" with Hadoop, HIVE, HBase, Flink, Kafka consumers/ produces (in Java), and Pyspark.
+        </p>
+        <!--
+          I don't know how to present this, but for my own sake, the project names I can recall are:
+          * Cloud Center of Excelence: Cloud and infrastructure providing team.
+          * BIAS: BI as a Service - I stood up a kafka cluster and managed it.  I picked up Java and did some stuff with it???  I don't actually remember doing any Java stories, lol... oh yeah, I was brought in as the Devops guy.  I picked up all the CI/ CD work for the team.  I did the deployments, I think I must have learned Redhat's Openshift followed by kubernetes?  I managed the k8s deployments.
+          * Change Data Capture: Some proprietary service to capture database changes and send them to our event streams.
+          * Polaris: I think I did a Java Spring Boot API that interfaced with some external team, but the external team wasn't ready to start working so we switched gears to something else?
+          * ____: Some project that was going to replace a 3rd party licensed software parsing EDI data that cost over $1 million dollars per month to use.
+          * JPAC: Jenkins Pipeline as Code team.
+          * Misc Devops: I did Vault and secrets management to help teams adopt Vault and utilize it effectively.
+          * Github Instructor: I led teams of students through our Github training program.
+          * CCAT-DE: Data Engineering, Airflow, HIVE, HBase, Hadoop, MapR.  Airflow ran a series of HIVE queries that pulled data from HIVE and did ETL that eventually populated a table in HIVE... Then our Kafka consumer would run, and consume from our Hive table, and stream data out to Kafka.  There was also a Kafka consumer that pulled the data out of Kafka and I think populated a MySQL database for the CCAT frontend team.
+          * CCAT-[front end?]: Java spring boot application
+        -->
+      </li>
+
+      <li>
+        <a class="subject no-link" href="#/close_source">
+          Harken Health Rails App and Cloud Infrastructure
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/harken.jpg" ></image>
+        </div>
+        <ul class="tags">
+          <li>Startup</li>
+          <li>Healthcare</li>
+          <li>HIPAA</li>
+          <li>PII</li>
+          <li>Rails</li>
+          <li>API Consumption</li>
+          <li>JRuby</li>
+          <li>MySQL</li>
+          <li>EmberJS</li>
+          <li>Jenkins</li>
+          <li>New Relic</li>
+          <li>Terraform</li>
+          <li>Cucumber/ BDD</li>
+          <li>Rspec/ TDD</li>
+          <li>Agile</li>
+          <li>Work</li>
+        </ul>
+        <p class="description">
+          This was a customer-facing Rails app that helped our customers navigate their healthcare needs.  You know you're in healthcare when the application you inherit is too complicated to boot locally into a presentable state.  Our deployments were split across the on-prem data center furnished by our sponsor in Healthcare and AWS.  We had an amazing architect who set up all our AWS infrastructure as code using Terraform.
+        </p>
+      </li>
+
+      <li>
+        <a class="subject" href="https://github.com/thenotary/eff_fab">
+          EFF Fab: Rails App for Tracking Team Status
+        </a>
+        <div class="image-container">
+          <image class="image" src="images/forward_and_back.png" ></image>
+        </div>
+        <ul class="tags">
+          <li>Rails</li>
+          <li>FOSS</li>
+          <li>AWS RDS</li>
+          <li>Rest APIs</li>
+          <li>Geolocation APIs</li>
+          <li>Phone Service APIs</li>
+          <li>Work</li>
+        </ul>
+        <p class="description">
+          EFF Fab was paid work I did for the EFF who actually do open source projects! It showcases professional use of Rails, caching, and SQL optimizations.  This app was a replacement for an older PHP app performing the same task in a less feature rich manner.  Eager to present Rails in it's best light, I took every measure to keep it as performant as the application it was obsoleting.
         </p>
 
-    </li>
+      </li>
 
-    <li>
-      <a class="subject" href="https://github.com/TheNotary/edu-offline-webapp-demo">
-        A Frameworkless, Offline, DB Synchronizing Web App
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/low-signal.png" ></image>
-      </div>
-      <ul class="tags">
-        <li>Architecture and Design</li>
-        <li>Reference Implementation</li>
-        <li>Written Communication</li>
-        <li>WebAPIs</li>
-        <li>Javascript</li>
-        <li>Offline Apps</li>
-      </ul>
-      <p class="description">
-        One of my clients required an application that could be used in an environment with inconsistent network availability.  Among the options I presented was this PoC which allowed for users to download the web app when networking was operational, supported offline usage via the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Worker API</a>, secures the data at rest via AES and performs DB synchronization with a simple backend mockup I did in Node.
-      </p>
-    </li>
-
-    <li>
-      <a class="subject no-link" href="#gitlab/maker_and_hardware/rpi/hardware-ras_____.git">
-        A React, Capacitor, Python, Embedded ARM, Mobile Gadget
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/arm.png" ></image>
-      </div>
-      <ul class="tags">
-        <li>React</li>
-        <li>Capacitor</li>
-        <li>Python</li>
-        <li>Embedded</li>
-        <li>ARM</li>
-        <li>iOS</li>
-        <li>Android</li>
-      </ul>
-      <p class="description">
-        An up-coming kickstarter project for a device with a react/ capacitor-based frontend for web/ mobile interactions, two embedded python services, and an ARM Cortex-A based device running those two services on linux.  I really enjoyed building out the infrastructure related to this project.  I learned a lot about AWS and their IPV6 support that can allow for some very economical networking solutions.  This project is currently closed source while I source financing for the marketing aspects of the campaign, but I'm hopeful it makes traction and forms a strong community in the automation space.
-      </p>
-    </li>
-
-    <li>
-      <a class="subject" href="https://github.com/TriNetCo/pax-imperia-clone">
-        Pax Imperia Clone
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/pax.jpg" ></image>
-      </div>
-      <ul class="tags">
-        <li>React</li>
-        <li>NPM Library Packaging</li>
-        <li>ThreeJS</li>
-        <li>Golang</li>
-        <li>Websockets</li>
-        <li>Networking</li>
-        <li>GCP</li>
-      </ul>
-      <p class="description">
-        A collaborative effort where myself and three colleagues set out to recreate Pax Imperia in web technologies.  We used Javascript, Go, and a tiny bit of React to build out the multiplayer experience.  Due to cloud costs, the backend is no longer available, but don't let that stop you from checking out the <a href="https://pax.njax.org/" target="_">demo</a>.  Also, the assets are kind of heavy so you might need to give it some time before the space view renders planets and ships.
-      </p>
-    </li>
-
-    <li>
-      <a class="subject" href="https://github.com/TheNotary/cshrp_websocket_edu">
-        C# Websocket Implementation
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/rfc.jpg" ></image>
-      </div>
-      <ul class="tags">
-        <li>C#</li>
-        <li>Library Packaging</li>
-        <li>Statically Typed Testing Patterns</li>
-        <li>Streams</li>
-        <li>Implementation to Spec</li>
-        <li>multi-threaded</li>
-        <li>pubsub</li>
-      </ul>
-      <div class="description">
-        <p>
-          While between contracting clients and wanting to both brush up on my C# and also study websockets, I decided to spend a week writing a C# library based on <a href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a> that uses nothing but TCP sockets as a basis.  It was fun pouring over the RFC whitepaper and piecing the protocol together in C# and also gave me that implementation practice in C# I hadn't been getting enough of over the past few years.  The library was eventually packaged for consumption via Unity.  I used the <a href="https://learn.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern">Observer design pattern</a> to implement a pub/ sub functionality.
-        </p>
-        <p>
-          Writing well tested code is important to me, it relieves me of the doubt and concern that otherwise comes hand-in-hand with code changes.  The satisfactory test coverage in this project is owed to my use of the <a href="https://refactoring.guru/design-patterns/adapter/csharp/example">Adapter Pattern</a> which allows me to use real NetworkStreams in my production code, and switch to a mocked out implementation when running my tests.
-        </p>
-      </div>
-    </li>
-
-    <li>
-      <a class="subject" href="https://github.com/TheNotary/fish_poop/tree/gh-pages/keyboard_memory">
-        Mario Teaches Typing an educational browser game
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/press-f.jpg" ></image>
-      </div>
-      <ul class="tags">
-        <li>VanillaJS</li>
-        <li>Educational Game Dev</li>
-        <li>Jasmine Integration Testing</li>
-        <li>Web Audio API</li>
-      </ul>
-      <p class="description">
-        I wrote this to help my nephew remember where the keys are on the keyboard without looking.  It's been agest but the <a href="https://thenotary.github.io/fish_poop/keyboard_memory/index.html">demo</a> appears to be operational.
-      </p>
-    </li>
-
-    <li>
-      <a class="subject" href="https://github.com/TheNotary/initial_fantasy">
-        Initial Fantasy a browser game
-      </a>
-      <ul class="tags">
-        <li>Oldschool prototypical VanillaJS</li>
-        <li>Canvas API</li>
-      </ul>
-      <p class="description">
-        Initial Fantasy is a clone that I started of an old game from 1991.  I was inspired to do this shortly after the HTML Canvas API began to see browser adoption.
-      </p>
-    </li>
-
-    <li>
-      <a class="subject no-link" href="#">
-        5 yrs with Optum, Cloud Engineering, Data Engineering, Software Engineering, etc.
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/optum.jpg" ></image>
-      </div>
-      <ul class="tags">
-        <li>Work</li>
-        <li>DevSecOps</li>
-        <li>CI/ CD</li>
-        <li>Vault</li>
-        <li>Java</li>
-        <li>Python</li>
-        <li>Spring Boot</li>
-        <li>JTest</li>
-        <li>Rest APIs</li>
-        <li>Kafka</li>
-        <li>Event-Driven</li>
-        <li>k8s</li>
-        <li>Infrastructure</li>
-        <li>CI/ CD Pipeline Library Development</li>
-        <li>Terraform</li>
-        <li>Airflow</li>
-        <li>HIVE</li>
-        <li>HBase</li>
-        <li>Hadoop</li>
-        <li>TLS Cert Management</li>
-      </ul>
-      <p class="description">
-        I worked with a lot of different technologies at Optum.  I developed Rest APIs using Java Spring Boot, defined infrastructure as code using Ansible influenced idempotent provisioners, defined deployments to Openshift and Kubernetes via k8s manifest files, managed a Kafka services used by multiple teams, built CI/ CD pipelines to manage deployments,  contributed to the design and implementation of the enterprise's centralized CI/ CD pipeline library, did cloud engineering "stuff" with AWS and terraform, and did miscellaneous data engineering "stuff" with Hadoop, HIVE, HBase, Flink, Kafka consumers/ produces (in Java), and Pyspark.
-      </p>
-      <!--
-        I don't know how to present this, but for my own sake, the project names I can recall are:
-        * Cloud Center of Excelence: Cloud and infrastructure providing team.
-        * BIAS: BI as a Service - I stood up a kafka cluster and managed it.  I picked up Java and did some stuff with it???  I don't actually remember doing any Java stories, lol... oh yeah, I was brought in as the Devops guy.  I picked up all the CI/ CD work for the team.  I did the deployments, I think I must have learned Redhat's Openshift followed by kubernetes?  I managed the k8s deployments.
-        * Change Data Capture: Some proprietary service to capture database changes and send them to our event streams.
-        * Polaris: I think I did a Java Spring Boot API that interfaced with some external team, but the external team wasn't ready to start working so we switched gears to something else?
-        * ____: Some project that was going to replace a 3rd party licensed software parsing EDI data that cost over $1 million dollars per month to use.
-        * JPAC: Jenkins Pipeline as Code team.
-        * Misc Devops: I did Vault and secrets management to help teams adopt Vault and utilize it effectively.
-        * Github Instructor: I led teams of students through our Github training program.
-        * CCAT-DE: Data Engineering, Airflow, HIVE, HBase, Hadoop, MapR.  Airflow ran a series of HIVE queries that pulled data from HIVE and did ETL that eventually populated a table in HIVE... Then our Kafka consumer would run, and consume from our Hive table, and stream data out to Kafka.  There was also a Kafka consumer that pulled the data out of Kafka and I think populated a MySQL database for the CCAT frontend team.
-        * CCAT-[front end?]: Java spring boot application
-      -->
-    </li>
-
-    <li>
-      <a class="subject no-link" href="#/close_source">
-        Harken Health Rails App and Cloud Infrastructure
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/harken.jpg" ></image>
-      </div>
-      <ul class="tags">
-        <li>Startup</li>
-        <li>Healthcare</li>
-        <li>HIPAA</li>
-        <li>PII</li>
-        <li>Rails</li>
-        <li>API Consumption</li>
-        <li>JRuby</li>
-        <li>MySQL</li>
-        <li>EmberJS</li>
-        <li>Jenkins</li>
-        <li>New Relic</li>
-        <li>Terraform</li>
-        <li>Cucumber/ BDD</li>
-        <li>Rspec/ TDD</li>
-        <li>Agile</li>
-        <li>Work</li>
-      </ul>
-      <p class="description">
-        This was a customer-facing Rails app that helped our customers navigate their healthcare needs.  You know you're in healthcare when the application you inherit is too complicated to boot locally into a presentable state.  Our deployments were split across the on-prem data center furnished by our sponsor in Healthcare and AWS.  We had an amazing architect who set up all our AWS infrastructure as code using Terraform.
-      </p>
-    </li>
-
-    <li>
-      <a class="subject" href="https://github.com/thenotary/eff_fab">
-        EFF Fab: Rails App for Tracking Team Status
-      </a>
-      <div class="image-container">
-        <image class="image" src="images/forward_and_back.png" ></image>
-      </div>
-      <ul class="tags">
-        <li>Rails</li>
-        <li>FOSS</li>
-        <li>AWS RDS</li>
-        <li>Rest APIs</li>
-        <li>Geolocation APIs</li>
-        <li>Phone Service APIs</li>
-        <li>Work</li>
-      </ul>
-      <p class="description">
-        EFF Fab was paid work I did for the EFF who actually do open source projects! It showcases professional use of Rails, caching, and SQL optimizations.  This app was a replacement for an older PHP app performing the same task in a less feature rich manner.  Eager to present Rails in it's best light, I took every measure to keep it as performant as the application it was obsoleting.
-      </p>
-
-    </li>
-
-  </ul>
+    </ul>
+  </section>
 
   <!--
   These notes are just for me.  Probably I'll forget about them.

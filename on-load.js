@@ -8,3 +8,14 @@ for (const anchor of subjectsMarkedNoLink) {
     anchor.onclick = function() { return false; };
     anchor.removeAttribute("href");
 }
+
+function resetAnimation() {
+    const subtitle = document.getElementById('subtitle');
+    const contact = document.getElementById('contact');
+    subtitle.classList.remove('animate');
+    contact.classList.remove('animate');
+    void subtitle.offsetWidth;
+    void contact.offsetWidth;
+    subtitle.classList.add('animate');
+    contact.classList.add('animate');
+}

@@ -73,17 +73,15 @@ ul {
 
   /* The centered container div */
   & > div {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left:20px;
-    padding-right:20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left:  30px;
+    padding-right: 30px;
 
-    background-color: var(--paper-color);
-    color: #333a;
+    background: linear-gradient(90deg, #dddf, #ddda );
+    color: #444;
 
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
 
     div {
       margin-top: 8px;
@@ -95,25 +93,81 @@ ul {
 
 .contact {
   text-align: center;
-  /* color: var(--paragraph-calm-color); */
 
-  /* location */
-  div {
+  /* Centered Div */
+  & > div {
+
+    .location {
+      font-size: 1.2em;
+    }
 
   }
-}
 
-.title {
-  text-align: center;
 }
 
 h1.title {
-  color: var(--primary-color);
+  color: var(--mystery-color);
+  text-align: center;
+  font-size: 3em;
 }
 
-h3.title {
-  /* color: var(--paragraph-calm-color); */
+#subtitle {
+  text-align: center;
   color: var(--paragraph-color);
+  cursor: default;
+}
+
+#subtitle span {
+  font-size: 1.3em;
+}
+
+/* Get Big | Get small | wait 2 * n-1 frames where n is the number of titles I have are */
+/* 8 frames total*/
+@keyframes fontbulger {
+  0%, 25%, 100% {
+    font-size: 1.3em;
+    color: var(--paragraph-color);
+  }
+  12.5% {
+    font-size: 1.31em;
+    color: var(--primary-color);
+  }
+}
+
+@keyframes wellbulger {
+  0%, 25%, 100% {
+    /* font-size: 1.3em; */
+    color: '#444';
+  }
+  12.5% {
+    /* font-size: 1.31em; */
+    color: var(--primary-color);
+  }
+}
+
+#subtitle.animate span:nth-child(1) {
+  animation: fontbulger 4s;
+  animation-delay: 1s;
+}
+
+#subtitle.animate span:nth-child(2) {
+  animation: fontbulger 4s;
+  animation-delay: 2s;
+}
+
+#subtitle.animate span:nth-child(3) {
+  animation: fontbulger 4s;
+  animation-delay: 3s;
+}
+
+#subtitle.animate span:nth-child(4) {
+  animation: fontbulger 4s;
+  animation-delay: 4s;
+}
+
+#contact.animate .centered-container {
+  animation: wellbulger 2s;
+  animation-delay: 5s;
 }
 
 section.intro {
@@ -123,6 +177,18 @@ section.intro {
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+section.my-work {
+  opacity: 0;
+  animation: fadeIn 5s;
+  animation-fill-mode: forwards;
+  animation-delay: 6s;
 }
 
 /* Project Items Display */
@@ -189,15 +255,13 @@ ul.projects {
       /* max-height: 142px; */
     }
 
-
-
     /* Link/ header description */
     a.subject {
       display: inline-block;
       margin-bottom: 9px;
       order: 0;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1.2em;
       color: var(--primary-color);
       text-decoration: none;
 
@@ -244,7 +308,7 @@ ul.projects {
     .description {
       order: 2;
       display: block;
-      font-size: 16px;
+      font-size: 1em;
 
       color: #333;
       margin-top: 0px;

@@ -15,7 +15,7 @@ function putName(fullName) {
 
 function putMsg(name, title) {
     const visitorMsg = "Hi! Based on the link you used to reach this page, you must be idly dropping by for fun.  I hope you enjoy your visit."
-    const authorizedMsg = `Hi, I'm ${name}, a ${title} and avid problem solver with over 10 years of industry experience.  Give me a shout so we can talk over your business needs and develop the solution that best fits your needs.`;
+    const authorizedMsg = `Hi, I'm ${name}, a ${title} and dedicated problem solver with over 10 years of industry experience.  Give me a shout so we can talk over your business needs and develop the solution that fits best.`;
     const msg = name ? authorizedMsg : visitorMsg;
     document.getElementById('msg').textContent = authorizedMsg;
 }
@@ -45,7 +45,6 @@ function getAndDecode(param) {
     return decodeURI(getQueryVariable(param));
 }
 
-
 const first_name = getAndDecode("f");
 const last_name = getAndDecode("l");
 const title = getAndDecode("t") || "technologist";
@@ -60,7 +59,6 @@ if (first_name && first_name.length > 3 && last_name.length > 3) {
     putName(name);
     putMsg(name, title);
 }
-
 
 put_phone(phone);
 put_city(city);
