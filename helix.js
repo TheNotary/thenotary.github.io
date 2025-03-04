@@ -1,5 +1,6 @@
 // will disable looping and show the slider that controls the time for the helix
 let debugWithSlider = false;
+let scrollPosition = 0;
 
 // Helix State
 let enabled = true;
@@ -22,17 +23,12 @@ let overlappers = [];
 // After each draw takes place, we call requestAnimationFrame to recursively
 // call this function and increment time.
 function drawHelix(ctx, config) {
+    ctx.clearRect(0, 0, config.width, config.height);
+
     // Decelerate when we hit the break point
     if (time > slowAt) {
         config.speed -= 0.0001;
     }
-
-    // stop when we're going reverse long enough to feel cool :)
-    if (time > slowAt && config.speed <= 0) {
-        return;
-    }
-
-    ctx.clearRect(0, 0, config.width, config.height);
 
     // 1. Draw all connection rungs first so subsequent objects are drawn on top
     forEachYCrossOfTheCanvas( (y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
@@ -51,8 +47,6 @@ function drawHelix(ctx, config) {
         }
     });
 
-
-
     // 3. Draw the remaining, foreground amino acids
     forEachYCrossOfTheCanvas((y, rStrandX, lDotX, scaleLeftDot, scaleRightStrand) => {
         const leftStrandIsCloser = scaleLeftDot > scaleRightStrand;
@@ -65,13 +59,28 @@ function drawHelix(ctx, config) {
         }
     });
 
+    // stop when we're going reverse long enough to feel cool :)
+    if (time > slowAt && config.speed <= 0) {
+        config.speed = 0;
+        enabled = false
+    }
+
+    // Recurse
+    if (config.loop && !debugWithSlider && enabled) {
+        time += config.speed;
+        requestAnimationFrame( () => { drawHelix(ctx, config) } );
+    }
+
+
+    // Functions
+
     function forEachYCrossOfTheCanvas(cb) {
         const centerX = config.width / 2;
         const startY = -10;
         const endY = config.height + 10;
 
         for (let y = startY; y <= endY; y += 1) {
-            const phase = y * config.frequency + time;
+            const phase = y * config.frequency + time + (scrollPosition * 0.01);
 
             // Right strand X value (solid wave)
             const rStrandX = centerX + Math.sin(phase) * config.amplitude;
@@ -199,11 +208,9 @@ function drawHelix(ctx, config) {
         ctx.fillText(word, lDotX + offsetX, y + offsetY);
     }
 
-    if (config.loop && !debugWithSlider) {
-        time += config.speed;
-        if (enabled)
-            requestAnimationFrame( () => { drawHelix(ctx, config) } );
-    }
+
+
+
 }
 
 // Helper function to convert hex color to RGB
@@ -220,7 +227,7 @@ function hexToRgb(hex) {
     return `${r}, ${g}, ${b}`;
 }
 
-const cWidth = 180;
+const cWidth = 155;
 const cHeight = window.innerHeight;
 // On load...
 const canvas = document.getElementById('helixCanvas');
@@ -308,3 +315,15 @@ if (debugWithSlider) {
 
 
 drawHelix(ctx, config);
+
+
+document.addEventListener("scroll", (event) => {
+    scrollPosition = window.scrollY;
+
+    if (!enabled) {
+        if (config.speed = 0) {
+            config.speed = 0.02;
+        }
+        drawHelix(ctx, config);
+    }
+});

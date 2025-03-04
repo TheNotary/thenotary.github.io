@@ -1,4 +1,6 @@
 :root {
+  overscroll-behavior: none;
+
   --background-color: #eee;
   --paper-color: #ddd;
 
@@ -21,6 +23,7 @@ h1, h2, h3, strong {
 }
 
 body {
+  overscroll-behavior: none;
   color: var(--paragraph-color);
   background-color: var(--background-color);
   font-family: Arial, sans-serif;
@@ -38,9 +41,10 @@ ul {
   position: fixed;
   top: 0px;
   right: 0px;
+  bottom: 0px;
 
   canvas {
-    width: 180px; /* these dimensions difer to ensure our resolution is good... */
+    width: 155px; /* these dimensions were meant to differ to ensure our resolution is good... things might need checking up on */
   }
 }
 
@@ -53,6 +57,10 @@ ul {
 }
 
 @media (min-width: 1000px) {
+  ::-webkit-scrollbar {
+      display: none;
+  }
+
   .hideable {
     visibility: visible;
     opacity: 1;
