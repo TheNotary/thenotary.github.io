@@ -124,7 +124,7 @@
             console.log("missing key");
             let contactDiv = document.getElementById('contact')
             let centerDiv = contactDiv.children[0];
-            centerDiv.innerHTML = "AES Key Missing <br/><br/>  My contact information is encrypted via Web Crypto API.  If you were linked here directly, I meant to include the decryption key in the link I gave you.  Double check that nothing's gone wrong with the URI. <br/><br/>  Otherwise if you're here through sheer meandering, thanks for stopping by :)";
+            centerDiv.innerHTML = "AES Key Missing <br/><br/>  My contact information is encrypted via the Web Crypto API.  If you were linked here directly, I meant to include the decryption key in the link I gave you.  Double check that nothing's gone wrong with the URI. <br/><br/>  Otherwise if you're here through sheer meandering, thanks for stopping by :)";
             return;
         }
 
