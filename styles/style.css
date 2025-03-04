@@ -45,6 +45,7 @@ ul {
 
   canvas {
     width: 155px; /* these dimensions were meant to differ to ensure our resolution is good... things might need checking up on */
+    height: 100%;
   }
 }
 
@@ -57,9 +58,10 @@ ul {
 }
 
 @media (min-width: 1000px) {
-  ::-webkit-scrollbar {
+  /* I'm on the fence about hiding the scroll bar again... */
+  /* ::-webkit-scrollbar {
       display: none;
-  }
+  } */
 
   .hideable {
     visibility: visible;
@@ -104,13 +106,10 @@ ul {
 
   /* Centered Div */
   & > div {
-
     .location {
       font-size: 1.2em;
     }
-
   }
-
 }
 
 h1.title {
@@ -129,80 +128,17 @@ h1.title {
   font-size: 1.3em;
 }
 
-/* Get Big | Get small | wait 2 * n-1 frames where n is the number of titles I have are */
-/* 8 frames total*/
-@keyframes fontbulger {
-  0%, 25%, 100% {
-    font-size: 1.3em;
-    color: var(--paragraph-color);
-  }
-  12.5% {
-    font-size: 1.31em;
-    color: var(--primary-color);
-  }
-}
-
-@keyframes wellbulger {
-  0%, 25%, 100% {
-    /* font-size: 1.3em; */
-    color: '#444';
-  }
-  12.5% {
-    /* font-size: 1.31em; */
-    color: var(--primary-color);
-  }
-}
-
-#subtitle.animate span:nth-child(1) {
-  animation: fontbulger 4s;
-  animation-delay: 1s;
-}
-
-#subtitle.animate span:nth-child(2) {
-  animation: fontbulger 4s;
-  animation-delay: 2s;
-}
-
-#subtitle.animate span:nth-child(3) {
-  animation: fontbulger 4s;
-  animation-delay: 3s;
-}
-
-#subtitle.animate span:nth-child(4) {
-  animation: fontbulger 4s;
-  animation-delay: 4s;
-}
-
-#contact.animate .centered-container {
-  animation: wellbulger 2s;
-  animation-delay: 5s;
-}
-
-section.intro {
-}
-
 .wrap {
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-section.my-work {
-  opacity: 0;
-  animation: fadeIn 5s;
-  animation-fill-mode: forwards;
-  animation-delay: 6s;
-}
-
 /* Project Items Display */
 ul.projects {
   padding-left: 40px;
   padding-right: 40px;
+  padding-bottom: 10px;
 
   /* Project Item */
   li {

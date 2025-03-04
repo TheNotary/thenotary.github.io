@@ -213,19 +213,6 @@ function drawHelix(ctx, config) {
 
 }
 
-// Helper function to convert hex color to RGB
-function hexToRgb(hex) {
-    // Remove the # if present
-    hex = hex.replace(/^#/, '');
-
-    // Parse the hex values
-    const bigint = parseInt(hex, 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
-
-    return `${r}, ${g}, ${b}`;
-}
 
 const cWidth = 155;
 const cHeight = window.innerHeight;
@@ -255,22 +242,34 @@ function setupCanvas(canvas) {
 
 setupCanvas(canvas);
 
+// Handle Window Resize /////////////////////
+
+function handleWindowReSize() {
+  canvas.height = window.innerHeight;
+  config.height = window.innerHeight;
+  setupCanvas(canvas);
+}
+
+window.onresize = handleWindowReSize;
+
+
 // Allow user to disable and hide helix
 helixContainer.onclick = () => {
-    // enabled = !enabled
-    if (enabled) {
-        // Disable
-        canvas.classList.add('hidden');
-        canvas.classList.remove('hideable');
-        setTimeout(() => {
-            enabled = !enabled;
-        }, 2000);
-    } else {
+    const isHidden = canvas.classList.contains('hidden');
+    if (isHidden) {
         // Enable
         canvas.classList.add('hideable');
         canvas.classList.remove('hidden');
-        enabled = !enabled;
-        drawHelix(ctx, config, 9);
+        // enabled = !enabled;
+        // drawHelix(ctx, config, 9);
+    } else {
+        // Disable
+        canvas.classList.add('hidden');
+        canvas.classList.remove('hideable');
+        // enabled = !enabled;
+        // setTimeout(() => {
+        //     enabled = !enabled;
+        // }, 2000);
     }
 }
 
@@ -315,15 +314,3 @@ if (debugWithSlider) {
 
 
 drawHelix(ctx, config);
-
-
-document.addEventListener("scroll", (event) => {
-    scrollPosition = window.scrollY;
-
-    if (!enabled) {
-        if (config.speed = 0) {
-            config.speed = 0.02;
-        }
-        drawHelix(ctx, config);
-    }
-});
