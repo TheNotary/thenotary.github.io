@@ -62,7 +62,7 @@ function drawHelix(ctx, config) {
     // stop when we're going reverse long enough to feel cool :)
     if (time > slowAt && config.speed <= 0) {
         config.speed = 0;
-        enabled = false
+        enabled = false;
     }
 
     // Recurse
@@ -72,7 +72,7 @@ function drawHelix(ctx, config) {
     }
 
 
-    // Functions
+    // Private Functions ///////////////////////////
 
     function forEachYCrossOfTheCanvas(cb) {
         const centerX = config.width / 2;
@@ -208,9 +208,6 @@ function drawHelix(ctx, config) {
         ctx.fillText(word, lDotX + offsetX, y + offsetY);
     }
 
-
-
-
 }
 
 
@@ -242,15 +239,32 @@ function setupCanvas(canvas) {
 
 setupCanvas(canvas);
 
-// Handle Window Resize /////////////////////
+// Handle Events /////////////////////
 
-function handleWindowReSize() {
-  canvas.height = window.innerHeight;
-  config.height = window.innerHeight;
-  setupCanvas(canvas);
+window.addEventListener("resize", (event) => {
+    canvas.height = window.innerHeight;
+    config.height = window.innerHeight;
+    setupCanvas(canvas);
+    if (!enabled) {
+        drawHelix(ctx, config);
+    }
+});
+
+document.addEventListener("scroll", (event) => {
+    forwardScrollEventToHelix();
+});
+
+
+function forwardScrollEventToHelix() {
+    scrollPosition = window.scrollY;
+
+    if (!enabled) {
+        if (config.speed = 0) {
+            config.speed = 0.02;
+        }
+        drawHelix(ctx, config);
+    }
 }
-
-window.onresize = handleWindowReSize;
 
 
 // Allow user to disable and hide helix

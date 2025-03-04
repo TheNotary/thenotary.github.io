@@ -31,38 +31,14 @@ scrollEvents.push(forwardScrollEventToHelix);
 scrollEvents.push(startFadeInEarly);
 
 document.addEventListener("scroll", (event) => {
-    // startFadeInEarly();
-    // forwardScrollEventToHelix();
-
-    for (const evt of scrollEvents) {
-        evt();
-    }
+    startFadeInEarly();
 });
-
-
-
-
-
-function forwardScrollEventToHelix() {
-    // This global is defined in helix.js..... I should probably make a Helix
-    // class at this point
-    scrollPosition = window.scrollY;
-
-    if (!enabled) {
-        if (config.speed = 0) {
-            config.speed = 0.02;
-        }
-        drawHelix(ctx, config);
-    }
-}
 
 
 const myWork = document.getElementById('my-work');
 let anim = myWork.getAnimations()[0];
 
 function startFadeInEarly() {
-    console.log("zzz");
-
     const msSinceLoad = performance.now();
 
     // if (myWork.getAnimations()[0].overallProgress < 0.5 || anim.overallprogress === undefined) {

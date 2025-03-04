@@ -9,11 +9,11 @@ function getQueryVariable(variable)
        return('');
 }
 
-function putName(fullName) {
+function put_name(fullName) {
     document.getElementById('real_name').textContent = fullName;
 }
 
-function putMsg(name, title) {
+function put_msg(name, title) {
     const visitorMsg = "Hi! Based on the link you used to reach this page, you must be idly dropping by for fun.  I hope you enjoy your visit."
     const authorizedMsg = `Hi, I'm ${name}, a ${title} and dedicated problem solver with over 10 years of industry experience.  Give me a shout so we can talk over your business needs and develop the solution that fits best.`;
     const msg = name ? authorizedMsg : visitorMsg;
@@ -56,8 +56,8 @@ const email = getAndDecode("e");
 
 if (first_name && first_name.length > 3 && last_name.length > 3) {
     const name = `${first_name} ${last_name}`.trim()
-    putName(name);
-    putMsg(name, title);
+    put_name(name);
+    put_msg(name, title);
 }
 
 put_phone(phone);
