@@ -74,11 +74,11 @@
             console.log("generated crypto key data:");
             console.log(exp['k']);
 
-            let key_jwt = JSON.parse(key_jwt_string);
+            let keyJwt = JSON.parse(key_jwt_string);
 
             key = await window.crypto.subtle.importKey(
                 "jwk",
-                key_jwt,
+                keyJwt,
                 {
                     name: "AES-CTR",
                     length: 256
@@ -89,6 +89,7 @@
 
             // Encrypt some payload
             let data = {
+                auth_level: "0",
                 f: "John",
                 l: "Smith",
                 c: "New York",
@@ -115,6 +116,23 @@
     }
 
     //generateKeyAndPerformEncryption();
+    doTieredDecryption();
+
+
+    function doTieredDecryption() {
+
+        const obj1 = {
+            f: "John",
+            l: "Smith",
+            c: "New York",
+            s: "NY",
+            p: "(555)555-1234",
+            e: "John@example.com",
+            t: "Typist",
+        }
+
+        populatePII(obj1);
+    }
 
     DecodeDataSoup();
 
@@ -124,28 +142,50 @@
             console.log("missing key");
             let contactDiv = document.getElementById('contact')
             let centerDiv = contactDiv.children[0];
-            centerDiv.innerHTML = "AES Key Missing <br/><br/>  My contact information is encrypted via the Web Crypto API.  If you were linked here directly, I meant to include the decryption key in the link I gave you.  Double check that nothing's gone wrong with the URI. <br/><br/>  Otherwise if you're here through sheer meandering, thanks for stopping by :)";
+            let msg = "";
+            msg += "AES Key Missing <br/><br/>"
+            msg += "My contact information is encrypted via the Web Crypto API.  ";
+            msg += "If you were linked here directly, I meant to include the decryption key in the link I gave you.  ";
+            msg += "Double check that nothing's gone wrong with the URI.";
+            msg += "<br/><br/>";
+            msg += "Otherwise if you're here through sheer meandering, thanks for stopping by :)";
+            centerDiv.innerHTML = msg;
             return;
         }
 
-        // let key_data_string = ""
-        let counter_string = "Zkpj7JQ1Yf6oTJjk3m598A=="
-        let cyphertextString = "m4W9k5Cv1tir8eHapsxmLXZchswL4l/ammHxHrmcBSqPZ4vZ3f2ZPgwCQM2O6snhrZSImi3ShqEw/9YV/iN2QOsIpejfGjlRIM24i9nhWiqVVmmGMzKQ7VbifVHLkPeKgfyAnVCxctGhbhTDHWfZ7UO/C3fGCLBj4mfQHLs=";
+        let soupKitchen = {
+            "2": {
+                "counter": "Zkpj7JQ1Yf6oTJjk3m598A==",
+                "cyphertext": "m4W9k5Cv1tir8eHapsxmLXZchswL4l/ammHxHrmcBSqPZ4vZ3f2ZPgwCQM2O6snhrZSImi3ShqEw/9YV/iN2QOsIpejfGjlRIM24i9nhWiqVVmmGMzKQ7VbifVHLkPeKgfyAnVCxctGhbhTDHWfZ7UO/C3fGCLBj4mfQHLs="
+            },
+        };
 
-        let key_jwt = { "k": key_data_string, "alg":"A256CTR","ext":true,"key_ops":["encrypt","decrypt"],"kty":"oct"};
+        let lvl = getQueryVariable('lvl') == "" ? "2" : getQueryVariable('lvl');
+
+        const counter_string = soupKitchen[lvl]["counter"];
+        const cyphertextString = soupKitchen[lvl]["cyphertext"];
+
+        let keyJwt = {"alg":"A256CTR","ext":true,"key_ops":["encrypt","decrypt"],"kty":"oct"};
+        keyJwt = { ...keyJwt, ...{ "k": key_data_string } };
         let counter = base64ToArrayBuffer(counter_string);
         let cyphertext = base64ToArrayBuffer(cyphertextString);
 
-        const key = await window.crypto.subtle.importKey(
-            "jwk",
-            key_jwt,
-            {
-                name: "AES-CTR",
-                length: 256
-            },
-            true,
-            ["encrypt", "decrypt"],
-        );
+        try {
+            var key = await window.crypto.subtle.importKey(
+                "jwk",
+                keyJwt,
+                {
+                    name: "AES-CTR",
+                    length: 256
+                },
+                true,
+                ["encrypt", "decrypt"],
+            );
+        }
+        catch (e) {
+            console.log("Error: Bad Key, skipping decrypt.");
+            return;
+        }
 
         let decryptedMsg = await decryptMessage(key, counter, cyphertext);
         let obj = JSON.parse(decryptedMsg);

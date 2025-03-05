@@ -13,8 +13,7 @@ function put_name(fullName) {
     document.getElementById('real_name').textContent = fullName;
 }
 
-// TODO: the grammer breaks if the title begins with a vowel... don't let it end this way
-function put_msg(name, title) {
+function put_msg(name) {
     // visitorMsg is depricated, need to clean up loose ends
     let msg = `Hi I'm ${name}, a technologist and dedicated problem solver `;
     msg += "with over <strong>10 years</strong> of industry experience.  ";
@@ -48,14 +47,26 @@ function getAndDecode(param) {
 }
 
 function populatePII(obj) {
-    const name = `${obj['f']} ${obj['l']}`.trim()
-    const title = obj['t'];
-    put_name(name);
-
-    put_msg(name, title);
-
-    put_phone(obj['p'].replace(")", ") "));
-    put_city(obj['c']);
-    put_state(obj['s']);
-    put_email(obj['e']);
+    const auth_level = getQueryVariable('lvl');
+    switch (auth_level) {
+        case "":
+            console.log("Undefined, assuming full");
+        case "2":
+            console.log("Populating email/ phone");
+            put_email(obj['e']);
+            put_phone(obj['p'].replace(")", ") "));
+        case "1":
+            console.log("Populating location");
+            put_city(obj['c']);
+            put_state(obj['s']);
+        case "0":
+            console.log("Populating names");
+            const name = `${obj['f']} ${obj['l']}`.trim();
+            const title = obj['t'];
+            put_name(name);
+            put_msg(name);
+            break;
+        default:
+            console.log("idk: " + auth_level);
+    }
 }
