@@ -16,8 +16,10 @@ function put_name(fullName) {
 // TODO: the grammer breaks if the title begins with a vowel... don't let it end this way
 function put_msg(name, title) {
     // visitorMsg is depricated, need to clean up loose ends
-    const authorizedMsg = `Hi, I'm ${name}, a technologist and dedicated problem solver with over 10 years of industry experience.  Give me a shout so we can talk over your business needs and develop the solution that fits best.`;
-    document.getElementById('msg').textContent = authorizedMsg;
+    let msg = `Hi I'm ${name}, a technologist and dedicated problem solver `;
+    msg += "with over <strong>10 years</strong> of industry experience.  ";
+    msg += "Give me a shout so we can talk through your business needs and see if my skills can be of service to you.";
+    document.getElementById('msg').innerHTML = msg;
 }
 
 // TODO: Meta programming?

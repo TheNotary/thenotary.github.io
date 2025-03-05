@@ -33,6 +33,12 @@ ul {
   list-style: none;
 }
 
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+
 .no-render {
   display: none;
 }
@@ -104,11 +110,16 @@ ul {
 .contact {
   text-align: center;
 
+  .centered-container {
+    min-width: 350px;  /* minimize bounce */
+  }
+
   /* Centered Div */
   & > div {
     max-width: 400px;
     .location {
       font-size: 1.2em;
+      min-width: 65px;  /* minimize bounce */
     }
   }
 }
@@ -129,10 +140,16 @@ h1.title {
   font-size: 1.3em;
 }
 
-.wrap {
+#msg {
+  /* max-width: 600px; */
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px;
+  text-align: center;
+  min-height: 37px;
+}
+
+#my-work > h2 {
+  margin-bottom: 12px;
 }
 
 /* Project Items Display */
@@ -140,10 +157,13 @@ ul.projects {
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 10px;
+  margin-top: 0px;
 
   /* Project Item */
   li {
-    margin-bottom: 20px;
+    margin-bottom: 4px;
+    padding-top: 16px;
+    clear: left;
 
     &:nth-child(odd) .image-container {
       float: left;
@@ -257,7 +277,7 @@ ul.projects {
 
       color: #333;
       margin-top: 0px;
-      margin-bottom: 0px;
+      /* margin-bottom: 0px; */
 
       p:not(:first-child) {
         text-indent: 2rem;
