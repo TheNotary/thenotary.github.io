@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<button class="light-bulb-toggle" onclick="toggleDarkMode()">💡</button>
+
 <div class="helix-container">
   <canvas id="helixCanvas" class="hideable"></canvas>
 </div>
@@ -39,7 +41,7 @@
 
         <div class="email-phone no-render">
           <div>
-            <span class="nothing" aria-hidden="true" role="presentation">📧</span>
+            <!-- <span class="nothing" aria-hidden="true" role="presentation">📧</span> -->
             <span id="email">***************</span>
           </div>
           <div>
@@ -135,7 +137,6 @@
         </p>
       </li>
 
-
       <li>
           <a class="subject no-link" href="#gitlab/apps/j____.git">
             Rails 8.0, Ruby Gems, GenAI Automation Project
@@ -170,9 +171,7 @@
           <p class="description">
             This is the latest and most ambitious Rails app I've ever worked on and should absolutely be referenced in future projects where I might use technologies from the Rails ecosystem (Stimulus, rails-turbo, Devise, ActiveJob, ActionCable, MiniTest, RSpec) or any interesting GenAI libraries (SpaCy, pgvector, llama-cpp-python, TransformerLens, etc).
           </p>
-
       </li>
-
 
       <li>
         <a class="subject" href="https://github.com/TheNotary/cshrp_websocket_edu">
@@ -432,6 +431,7 @@
 </div>
 </body>
 
+<script type="text/javascript" src="js/darkMode.js"></script>
 <script type="text/javascript" src="js/PutName.js"></script>
 <script type="text/javascript" src="js/crypto.js"></script>
 <script type="text/javascript" src="js/lambda-poke.js"></script>

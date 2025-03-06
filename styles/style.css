@@ -5,7 +5,7 @@
   --paper-color: #ddd;
 
   --primary-color: #0077cc;
-  --primary-light-color: #005599;   /* delta: 0x00, 0x22, 0x33 */
+  --primary-light-color: #005599;
   --secondary-color: #00adcc;
   --secondary-active-color: #18b8d4;
 
@@ -21,6 +21,14 @@
   --well-gradient-stop: #ddda;
 
   --mystery-color: #00111a;
+}
+
+html.dark-mode {
+  filter: invert(1);
+}
+
+html.dark-mode img {
+  filter: invert(1);
 }
 
 h1, h2, h3, strong {
@@ -362,4 +370,45 @@ ul.projects {
     }
 
   }
+}
+
+
+/* lightbulb dark mode */
+@keyframes dropDownLate {
+  0%, 90% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.light-bulb-toggle {
+  position: fixed;
+  top: -5px;
+  right: 160px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  border: 1px solid #444;
+
+  cursor: pointer;
+
+  animation: dropDownLate;
+  animation-timing-function: ease-out;
+  animation-duration: 4s;
+  /* animation-duration: 0.1s; */
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
 }
