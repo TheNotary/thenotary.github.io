@@ -9,7 +9,7 @@ let slowAt = 13;
 
 // Draw Word State
 const words = [ "Py", "Ruby","Go", "JS", "Rails", "CI", "k8s", "C++", "TS",
-                "Java", "C#", "Bash", "AWS", "GCP" ];
+                "Java", "C#", "Bash", "AWS", "GCP", "🎵" ];
 let textEdge = true;
 let wordIndex = 0;
 

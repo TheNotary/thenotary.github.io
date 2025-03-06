@@ -7,11 +7,19 @@
   --primary-color: #0077cc;
   --primary-light-color: #005599;   /* delta: 0x00, 0x22, 0x33 */
   --secondary-color: #00adcc;
-  --secondary-light-color: #008b99;
+  --secondary-active-color: #18b8d4;
 
   --heading-color: #111;
   --paragraph-color: #333;
+  --oil-rubbed-color: #444;
   --paragraph-calm-color: #888;
+  --middle-c: #ccc;
+  --tag-color: #eee;
+  --tag-active-color: #fff;
+
+  --well-gradient-start: #dddf;
+  --well-gradient-stop: #ddda;
+
   --mystery-color: #00111a;
 }
 
@@ -93,8 +101,8 @@ ul {
     padding-bottom: 15px;
     padding-left:  30px;
     padding-right: 30px;
-    background: linear-gradient(90deg, #dddf, #ddda );
-    color: #444;
+    background: linear-gradient(90deg, var(--well-gradient-start), var(--well-gradient-stop) );
+    color: var(--oil-rubbed-color);
 
     border-radius: 8px;
 
@@ -140,19 +148,19 @@ ul {
       vertical-align: middle;
       gap: 8px;
       padding: 8px 12px;
-      color: #444;
+      color: var(--oil-rubbed-color);
       text-decoration: none;
       font-weight: bold;
       border-radius: 4px;
       border: 1px solid;
-      /* border-color: #4440; */
-      border-color: #4443;
+      /* border-color: #444; */ /* var(--oil-rubbed-color) */
+      border-color: var(--middle-c);
       fill: var(--paragraph-calm-color);
     }
 
     a:hover {
       border: 1px solid;
-      border-color: #444;
+      border-color: var(--oil-rubbed-color);
       box-sizing: border-box;
       fill: var(--primary-color);
     }
@@ -253,14 +261,14 @@ ul.projects {
         margin-right: 8px;
 
         background: var(--secondary-color);
-        color: #eee;
+        color: var(--tag-color);
         padding: 5px 8px;
         border-radius: 20px;
         font-size: 12px;
 
         &:hover {
-          background-color: var(--secondary-light-color);
-          color: white;
+          background-color: var(--secondary-active-color);
+          color: var(--tag-active-color);
         }
       }
     }
@@ -333,7 +341,7 @@ ul.projects {
       display: block;
       font-size: 1em;
 
-      color: #333;
+      color: var(--paragraph-color);
       margin-top: 0px;
       /* margin-bottom: 0px; */
 

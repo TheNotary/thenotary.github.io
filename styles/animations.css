@@ -12,7 +12,7 @@
 @keyframes wellbulger {
   0%, 100% {
     /* font-size: 1em; */
-    color: '#444';
+    color: var(--oil-rubbed-color);
   }
   50% {
     /* font-size: 1.01em; */
@@ -35,6 +35,24 @@
     width: 22px;
     height: 22px;
     fill: var(--primary-color);
+  }
+}
+
+@keyframes fadeInDelayed {
+  0%, 30% {
+    opacity: 0.02;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLate {
+  0%, 50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -99,33 +117,14 @@
 }
 
 .delayed-fade-in {
-  animation: fadeInSharp;
+  animation: fadeInDelayed;
   animation-fill-mode: forwards;
-  animation-duration: 0.3s;
-  /* animation-delay: 0.1s; */
-  animation-delay: 0.01s;
+  animation-duration: 0.6s;
 }
-
-#page-title {
-  opacity: 0.1;
-}
-
-#contact {
-  opacity: 0.1;
-}
-
-section.my-work {
-  opacity: 0;
-}
-
-/* section.my-work.delayed-fade-in {
-  animation-duration: 4s;
-  animation-delay: 4.0s;
-} */
 
 section.my-work.delayed-fade-in-wk {
-  animation: fadeIn;
+  animation: fadeInLate;
   animation-fill-mode: forwards;
-  animation-duration: 4s;
-  animation-delay: 3.5s;
+  /* Fade-in delay = animation_duration * (key_frames_transparent/ n_key_frames), 3.5s at time of refactor */
+  animation-duration: 7s;
 }
