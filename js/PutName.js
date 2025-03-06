@@ -46,11 +46,10 @@ function getAndDecode(param) {
     return decodeURI(getQueryVariable(param));
 }
 
-function populatePII(obj) {
-    const auth_level = getQueryVariable('lvl');
+function populatePII(obj, auth_level) {
     switch (auth_level) {
         case "":
-            console.log("Undefined, assuming full");
+            console.log("Undefined auth_level, assuming full");
         case "2":
             console.log("Populating email/ phone");
             put_email(obj['e']);
