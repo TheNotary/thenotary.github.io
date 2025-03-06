@@ -1,24 +1,40 @@
-/* Get Big | Get small | wait 2 * n-1 frames where n is the number of titles I have are */
-/* 8 frames total*/
 @keyframes fontbulger {
-  0%, 25%, 100% {
+  0%, 100% {
     font-size: 1.3em;
     color: var(--paragraph-color);
   }
-  12.5% {
+  50% {
     font-size: 1.31em;
     color: var(--primary-color);
   }
 }
 
 @keyframes wellbulger {
-  0%, 25%, 100% {
-    /* font-size: 1.3em; */
+  0%, 100% {
+    /* font-size: 1em; */
     color: '#444';
   }
-  12.5% {
-    /* font-size: 1.31em; */
+  50% {
+    /* font-size: 1.01em; */
     color: var(--primary-color);
+  }
+}
+
+@keyframes svgbulger {
+  0%, 100% {
+    padding-top: 4px;
+    padding-right: 4px;
+    width: 20px;
+    height: 20px;
+    fill: var(--paragraph-calm-color);
+  }
+  50% {
+    padding-top: 0px;
+    padding-right: 4px;
+    margin-right: -4px;
+    width: 22px;
+    height: 22px;
+    fill: var(--primary-color);
   }
 }
 
@@ -28,27 +44,39 @@
 }
 
 #subtitle.animate span:nth-child(1) {
-  animation: fontbulger 4s;
+  animation: fontbulger;
+  animation-duration: 1s;
   animation-delay: 0s;
 }
 
 #subtitle.animate span:nth-child(2) {
-  animation: fontbulger 4s;
+  animation: fontbulger;
+  animation-duration: 1s;
   animation-delay: 0.8s;
 }
 
 #subtitle.animate span:nth-child(3) {
-  animation: fontbulger 4s;
+  animation: fontbulger;
+  animation-duration: 1s;
   animation-delay: 1.6s;
 }
 
 #subtitle.animate span:nth-child(4) {
-  animation: fontbulger 4s;
+  animation: fontbulger;
+  animation-duration: 1s;
   animation-delay: 2.4s;
 }
 
-#contact.animate .centered-container {
-  animation: wellbulger 2s;
+#contact.animate > .centered-container,
+#contact.animate > .centered-container a span {
+  animation: wellbulger;
+  animation-duration: 1s;
+  animation-delay: 3.2s;
+}
+
+#contact.animate > .centered-container svg {
+  animation: svgbulger;
+  animation-duration: 1s;
   animation-delay: 3.2s;
 }
 

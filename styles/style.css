@@ -40,7 +40,7 @@ ul {
 }
 
 .no-render {
-  display: none;
+  display: none!important;
 }
 
 .helix-container {
@@ -112,6 +112,33 @@ ul {
 
   .centered-container {
     min-width: 350px;  /* minimize bounce */
+    fill: var(--paragraph-calm-color);
+    /* color: var(--paragraph-calm-color) */
+  }
+
+  .email-phone {
+    display: flex;
+    /* justify-content: center; */
+    justify-content: space-between;
+
+    & > div {
+      flex-shrink: 1;
+      /* flex: 1; */
+    }
+  }
+
+  .social svg {
+    /* These margins are set for the animation to grow in the right directions */
+    padding-top: 4px;
+    margin-right: -4px;
+    padding-right: 4px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+  }
+
+  .social a:hover {
+    fill: var(--primary-color);
   }
 
   /* Centered Div */
@@ -296,4 +323,38 @@ ul.projects {
     }
 
   }
+}
+
+
+/* TODO: This last bit is really hacked in last minute, should reflow soon */
+.social .label {
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.linkedin-button, #social {
+    display: inline-flex;
+    vertical-align: middle;
+    gap: 8px;
+    padding: 8px 12px;
+    color: #444;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    border: 1px solid;
+    border-color: #4440;
+    /* border-color: #4443; */
+}
+
+.linkedin-button:hover, #social:hover {
+    border: 1px solid;
+    border-color: #444;
+    box-sizing: border-box;
+}
+
+.linkedin-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
 }
