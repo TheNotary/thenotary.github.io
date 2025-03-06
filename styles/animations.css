@@ -38,6 +38,11 @@
   }
 }
 
+@keyframes fadeInSharp {
+  from { opacity: 0.1; }
+  to   { opacity: 1; }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -64,14 +69,21 @@
 #subtitle.animate span:nth-child(4) {
   animation: fontbulger;
   animation-duration: 1s;
-  animation-delay: 2.4s;
+  animation-delay: 2.5s;
 }
 
-#contact.animate > .centered-container,
-#contact.animate > .centered-container a span {
+#contact.animate > .centered-container #city,
+#contact.animate > .centered-container #state {
   animation: wellbulger;
   animation-duration: 1s;
-  animation-delay: 3.2s;
+  animation-delay: 2.8s;
+}
+
+#contact.animate > .centered-container #phone,
+#contact.animate > .centered-container #email {
+  animation: wellbulger;
+  animation-duration: 1s;
+  animation-delay: 3.0s;
 }
 
 #contact.animate > .centered-container svg {
@@ -81,16 +93,39 @@
 }
 
 .immediate-fade-in {
-  animation: fadeIn 4s;
+  animation: fadeIn;
+  animation-duration: 4s;
   animation-fill-mode: forwards;
+}
+
+.delayed-fade-in {
+  animation: fadeInSharp;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  /* animation-delay: 0.1s; */
+  animation-delay: 0.01s;
+}
+
+#page-title {
+  opacity: 0.1;
+}
+
+#contact {
+  opacity: 0.1;
 }
 
 section.my-work {
   opacity: 0;
 }
 
-section.my-work.delayed-fade-in {
-  animation: fadeIn 4s;
+/* section.my-work.delayed-fade-in {
+  animation-duration: 4s;
+  animation-delay: 4.0s;
+} */
+
+section.my-work.delayed-fade-in-wk {
+  animation: fadeIn;
   animation-fill-mode: forwards;
-  animation-delay: 4.2s;
+  animation-duration: 4s;
+  animation-delay: 3.5s;
 }

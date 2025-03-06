@@ -10,7 +10,7 @@ function getQueryVariable(variable)
 }
 
 function put_name(fullName) {
-    document.getElementById('real_name').textContent = fullName;
+    document.getElementById('page-title').textContent = fullName;
 }
 
 function put_msg(name) {
@@ -21,26 +21,16 @@ function put_msg(name) {
     document.getElementById('msg').innerHTML = msg;
 }
 
-// TODO: Meta programming?
-function put_phone(phone) {
-    if (phone)
-        document.getElementById('phone').textContent = phone;
+function putSocial(value) {
+    if (value)
+        document.getElementById('social').href = value;
 }
 
-function put_city(city) {
-    if (city)
-        document.getElementById('city').textContent = city;
+function putTextContent(id, text) {
+    if (text)
+        document.getElementById(id).textContent = text;
 }
 
-function put_state(state) {
-    if (state)
-        document.getElementById('state').textContent = state;
-}
-
-function put_email(email) {
-    if (email)
-        document.getElementById('email').textContent = email;
-}
 
 function getAndDecode(param) {
     return decodeURI(getQueryVariable(param));
@@ -49,15 +39,18 @@ function getAndDecode(param) {
 function populatePII(obj, auth_level) {
     switch (auth_level) {
         case "":
-            console.log("Undefined auth_level, assuming full");
+            console.log("Undefined auth_level, assuming full... not actually good though");
         case "2":
             console.log("Populating email/ phone");
-            put_email(obj['e']);
-            put_phone(obj['p'].replace(")", ") "));
+            // Show the email/ phone div
+            document.getElementsByClassName('email-phone')[0].classList.remove('no-render');
+            putTextContent('email', obj['e'])
+            putTextContent('phone', obj['p'].replace(")", ") "))
         case "1":
             console.log("Populating location");
-            put_city(obj['c']);
-            put_state(obj['s']);
+            putTextContent('city', obj['c']);
+            putTextContent('state', obj['s']);
+            putSocial(obj['li']);
         case "0":
             console.log("Populating names");
             const name = `${obj['f']} ${obj['l']}`.trim();

@@ -44,12 +44,12 @@ function startFadeInEarly() {
     // if (myWork.getAnimations()[0].overallProgress < 0.5 || anim.overallprogress === undefined) {
     // The fade in effect will naturally begin at 4.5seconds into the page load,
     // so don't attempt to speed up the process after that time or you'll see annoying artifacting
-    if (msSinceLoad < 4500) {
+    if (msSinceLoad < 4500 && window.scrollY > 25) {
         // console.log("msSinceLoad: " + msSinceLoad);
 
         anim.cancel();
         // anim.play()
-        myWork.classList.remove('delayed-fade-in')
+        myWork.classList.remove('delayed-fade-in-wk')
         void myWork.offsetWidth;
         myWork.classList.add('immediate-fade-in')
         void myWork.offsetWidth;

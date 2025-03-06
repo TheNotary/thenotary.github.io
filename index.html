@@ -15,7 +15,7 @@
   <input type="range" id="slider" class="no-render" style="width: 800px;"></input>
 
   <h1 class="title">
-    <span id="real_name">TheNotary</span>
+    <span id="page-title" class="delayed-fade-in">TheNotary</span>
   </h1>
   <h3 id="subtitle" class="title animate" onclick="resetAnimation()">
     <span>Fullstack Engineer </span>│
@@ -29,7 +29,7 @@
       <p id="msg" class="summary"></p>
     </div>
 
-    <div id="contact" class="contact well animate">
+    <div id="contact" class="contact well animate delayed-fade-in">
       <div class="centered-container">
 
         <div class="location">
@@ -38,9 +38,14 @@
         </div>
 
         <div class="email-phone no-render">
-          <div id="email">***************</div>
-          <div aria-hidden="true" role="presentation">│</div>
-          <div id="phone">(***) ***-****</div>
+          <div>
+            <span class="nothing" aria-hidden="true" role="presentation">📧</span>
+            <span id="email">***************</span>
+          </div>
+          <div>
+            <span class="nothing" aria-hidden="true" role="presentation">📞</span>
+            <span id="phone">(***) ***-****</span>
+          </div>
         </div>
 
         <div class="social">
@@ -74,10 +79,9 @@
     </div>
   </section>
 
-  <script type="text/javascript" src="js/PutName.js"></script>
 
 
-  <section id="my-work" class="my-work delayed-fade-in">
+  <section id="my-work" class="my-work delayed-fade-in-wk">
     <h2>Interested in my Work?</h2>
 
     <ul class="projects">
@@ -343,8 +347,6 @@
         </p>
       </li>
 
-
-
       <li>
         <a class="subject no-link" href="#/close_source">
           Harken Health Rails App and Cloud Infrastructure
@@ -430,6 +432,7 @@
 </div>
 </body>
 
+<script type="text/javascript" src="js/PutName.js"></script>
 <script type="text/javascript" src="js/crypto.js"></script>
 <script type="text/javascript" src="js/lambda-poke.js"></script>
 <script type="text/javascript" src="js/helix.js"></script>
